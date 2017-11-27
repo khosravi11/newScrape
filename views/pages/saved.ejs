@@ -23,8 +23,7 @@
                 <p>Title:  <%= results[i].title %>'
                   <br />
                   URL: <a href="<%= results[i].url %>" target="_blank"> <%= results[i].url %></a>
-                </p>
-                <p>
+                <br>
                   <a data-id="<%= results[i].id %>" class="button is-info" id="removeArticles">Remove Articles</a>
                 </p>
 
@@ -52,15 +51,17 @@
         $(document).on('click', '#removeArticles', function () {
           // Empty the notes from the note section
           var id = $(this).data('id');
+          $(this).parent().fadeOut();
+          $(this).fadeOut();
           console.log('/remove/' + id);
-          // $.ajax({
-          //   method: 'DELETE',
-          //   url: '/articles/' + id
-          // })
-          //   // With that done, add the note information to the page
-          //   .done(function (data) {
-          //     console.log(data);
-          //   });
+          $.ajax({
+            method: 'DELETE',
+            url: '/remove/' + id
+          })
+            // With that done, add the note information to the page
+            .done(function (data) {
+              console.log(data);
+            });
         });
   </script>
 </html>

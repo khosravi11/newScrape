@@ -91,6 +91,17 @@ app.post('/articles/:id', function (req, res) {
     });
 });
 
+app.delete('/remove/:id', function (req, res) {
+  db.Saved
+    .remove({_id: req.params.id})
+    .then(function (dbArticle) {
+      console.log('done');
+    })
+    .catch(function (err) {
+      res.json(err);
+    });
+});
+
 // Start the server
 app.listen(process.env.PORT || 3000, function () {
   console.log('App running on port ' + PORT + '!');
