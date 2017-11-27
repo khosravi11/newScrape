@@ -13,7 +13,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 mongoose.Promise = Promise;
-mongoose.connect('mongodb://localhost/news_scraper', {
+mongoose.connect('mongodb://heroku_778ccrqs:l5vsmp4uj8nvi1ssp24aqmb7c2@ds121686.mlab.com:21686/heroku_778ccrqs', {
   useMongoClient: true
 });
 
