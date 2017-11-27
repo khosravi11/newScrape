@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>Google News Scraper</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' integrity='sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=' crossorigin='anonymous' />
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css' integrity='sha256-HEtF7HLJZSC3Le1HcsWbz1hDYFPZCqDhZa9QsCgVUdw=' crossorigin='anonymous' />
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet'>
+  </head>
+  <body>
+    <section>
+      <div class='container'>
+        <div class='columns'>
+          <div class='column'>
+            <div class='tile is-vertical notification'>
+              <div class='content'>
+                <h1 class='title is-1'>Hello, welcome to the Google News Scrapper</h1>
+              </div>
+            </div>
+            <div class='tile is-vertical notification'>
+                <a class='button is-info' id='getArticles'>Get Articles</a>
+                <br>
+                <a class='button is-info' id='myArticles' href='/saved'>My Saved Articles</a>
+            </div>
+            <div class='content' id='articles'>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </body>
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+  <script>
+    // Empty the notes from the note section
+    $('#getArticles').on('click', function () {
+      $.ajax({
+        method: 'GET',
+        url: '/articles'})
+        // With that done, add the note information to the page
+        .done(function (data) {
+          console.log(data);
+          for (var i = 0; i < data.length; i++) {
+            // Display the apropos information on the page
+            $('#articles').append('<p data-id="' + data[i]._id + '">Title: ' + data[i].title + '<br />URL: <a href="' + data[i].url + '" target="_blank">' + data[i].url + '</a><br><a data-id="' + data[i]._id + '" class="button is-info" id="saveArticles">Save Articles</a></p>');
+          }
+        });
+    });
+
+    $(document).on('click', '#saveArticles', function () {
+      // Empty the notes from the note section
+      var id = $(this).data('id');
+
+      $(this).parent().fadeOut();
+      $(this).fadeOut();
+      console.log('/articles/' + id);
+      $.ajax({
+        method: 'POST',
+        url: '/articles/' + id
+      })
+        // With that done, add the note information to the page
+        .done(function (data) {
+
+        });
+    });
+
+  </script>
+</html>
