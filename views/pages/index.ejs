@@ -23,7 +23,17 @@
                 <br>
                 <a class='button is-info' id='myArticles' href='/saved'>My Saved Articles</a>
             </div>
-            <div class='content' id='articles'>
+                        <div class='content' id='articles'>
+              <% for (let i = 0; i < allresults.length; i++) { %>
+                <p>Title:  <%= allresults[i].title %>'
+                  <br />
+                  URL: <a href="<%= allresults[i].url %>" target="_blank"> <%= allresults[i].url %></a>
+                <br>
+                  <a data-id="<%= allresults[i].id %>" class="button is-info" id="removeArticles">Remove Articles</a>
+                </p>
+
+                <% } %>
+
             </div>
           </div>
 
@@ -35,7 +45,7 @@
   <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
   <script>
     // Empty the notes from the note section
-    $('#getArticles').on('click', function () {
+/*    $('#getArticles').on('click', function () {
       $.ajax({
         method: 'GET',
         url: '/articles'})
@@ -47,7 +57,7 @@
             $('#articles').append('<p data-id="' + data[i]._id + '">Title: ' + data[i].title + '<br />URL: <a href="' + data[i].url + '" target="_blank">' + data[i].url + '</a><br><a data-id="' + data[i]._id + '" class="button is-info" id="saveArticles">Save Articles</a></p>');
           }
         });
-    });
+    });*/
 
     $(document).on('click', '#saveArticles', function () {
       // Empty the notes from the note section

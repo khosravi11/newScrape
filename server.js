@@ -18,7 +18,12 @@ mongoose.connect('mongodb://heroku_778ccrqs:l5vsmp4uj8nvi1ssp24aqmb7c2@ds121686.
 });
 
 app.get('/', function (req, res) {
+
+
+
   request('https://news.google.com/news/?gl=US&ned=us&hl=en', function (error, response, html) {
+   
+    let allresults = [];
     let $ = cheerio.load(html);
     $('.M1Uqc').each(function (i, element) {
       let title = $(element).children('a.nuEeue').text();
@@ -41,10 +46,20 @@ app.get('/', function (req, res) {
             console.log(err);
           });
     });
-    res.render('pages/index.ejs');
+    db.Article
+    .find({})
+    .then(function (dbArticles) {
+      allresults = dbArticles;
+      res.render('pages/index.ejs', {allresults: allresults});
+
+    })
+    .catch(function (err) {
+      res.json(err);
+    });
     if (error) throw error;
   });
 });
+
 app.get('/articles', function (req, res) {
   db.Article
     .find({})

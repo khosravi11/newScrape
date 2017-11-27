@@ -18,6 +18,9 @@
                 <h1 class='title is-1'>Saved Articles</h1>
               </div>
             </div>
+            <div class='tile is-vertical notification'>
+                <a class='button is-info' href="/" id='getArticles'>Get Articles</a>
+            </div>
             <div class='content' id='articles'>
               <% for (let i = 0; i < results.length; i++) { %>
                 <p>Title:  <%= results[i].title %>'
