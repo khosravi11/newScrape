@@ -25,6 +25,7 @@ app.get('/', function (req, res) {
    
     let allresults = [];
     let $ = cheerio.load(html);
+    let savetodb = true;
     $('.M1Uqc').each(function (i, element) {
       let title = $(element).children('a.nuEeue').text();
       let url = $(element).children('a.nuEeue').attr('href');
@@ -38,13 +39,40 @@ app.get('/', function (req, res) {
       } else {
         results.time = 'N/A';
       }
+
       db.Article
+          .find({})
+          .then(function (articles) {
+            for (var i = 0; i < articles.length; i++) {
+              
+              if(url === articles[i].url){
+                savetodb = false;
+                console.log(savetodb, articles[i].url, "breaaaaaaaaaaak");
+                break;
+              } else {savetodb = true; console.log(savetodb, articles[i].url);}
+
+            }
+          if(savetodb) {
+            db.Article
+          
           .create(results)
           .then(function (dbArticle) {
           })
           .catch(function (err) {
             console.log(err);
+          });     
+
+          }      
+          })
+          .catch(function (err) {
+            console.log(err);
           });
+
+      
+
+      if (i ===10){
+        return false;
+      }
     });
     db.Article
     .find({})
