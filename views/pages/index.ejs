@@ -45,19 +45,9 @@
   <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
   <script>
     // Empty the notes from the note section
-/*    $('#getArticles').on('click', function () {
-      $.ajax({
-        method: 'GET',
-        url: '/articles'})
-        // With that done, add the note information to the page
-        .done(function (data) {
-          console.log(data);
-          for (var i = 0; i < data.length; i++) {
-            // Display the apropos information on the page
-            $('#articles').append('<p data-id="' + data[i]._id + '">Title: ' + data[i].title + '<br />URL: <a href="' + data[i].url + '" target="_blank">' + data[i].url + '</a><br><a data-id="' + data[i]._id + '" class="button is-info" id="saveArticles">Save Articles</a></p>');
-          }
-        });
-    });*/
+    $('#getArticles').on('click', function () {
+      location.reload();
+    });
 
     $(document).on('click', '#saveArticles', function () {
       // Empty the notes from the note section

@@ -19,8 +19,6 @@ mongoose.connect('mongodb://heroku_778ccrqs:l5vsmp4uj8nvi1ssp24aqmb7c2@ds121686.
 
 app.get('/', function (req, res) {
 
-
-
   request('https://news.google.com/news/?gl=US&ned=us&hl=en', function (error, response, html) {
    
     let allresults = [];
@@ -47,9 +45,8 @@ app.get('/', function (req, res) {
               
               if(url === articles[i].url){
                 savetodb = false;
-                console.log(savetodb, articles[i].url, "breaaaaaaaaaaak");
                 break;
-              } else {savetodb = true; console.log(savetodb, articles[i].url);}
+              } else {savetodb = true; }
 
             }
           if(savetodb) {
@@ -76,6 +73,7 @@ app.get('/', function (req, res) {
     });
     db.Article
     .find({})
+    .sort({_id: -1})
     .then(function (dbArticles) {
       allresults = dbArticles;
       res.render('pages/index.ejs', {allresults: allresults});
@@ -88,25 +86,15 @@ app.get('/', function (req, res) {
   });
 });
 
-app.get('/articles', function (req, res) {
-  db.Article
-    .find({})
-    .then(function (dbArticle) {
-      res.json(dbArticle);
-    })
-    .catch(function (err) {
-      res.json(err);
-    });
-});
 
 app.get('/saved', function (req, res) {
   let results = [];
   db.Saved
     .find({})
+    .sort({_id: -1})
     .then(function (dbSaved) {
       results = dbSaved;
       res.render('pages/saved.ejs', {results: results});
-      console.log("test", results);
     })
     .catch(function (err) {
       res.json(err);
@@ -124,6 +112,14 @@ app.post('/articles/:id', function (req, res) {
       db.Saved
         .create(result)
         .then(function (dbSaved) {
+            db.Article
+            .remove({_id: req.params.id})
+            .then(function (dbArticle) {
+
+            })
+            .catch(function (err) {
+              res.json(err);
+            });
         })
         .catch(function (err) {
           res.json(err);
@@ -135,10 +131,31 @@ app.post('/articles/:id', function (req, res) {
 });
 
 app.delete('/remove/:id', function (req, res) {
+
+
+
+let result = {};
   db.Saved
-    .remove({_id: req.params.id})
+    .findOne({_id: req.params.id})
     .then(function (dbArticle) {
-      console.log('done');
+      result.title = dbArticle.title;
+      result.url = dbArticle.url;
+      result.time = dbArticle.time;
+      db.Article
+        .create(result)
+        .then(function (dbSaved) {
+            db.Article
+            .remove({_id: req.params.id})
+            .then(function (dbArticle) {
+
+            })
+            .catch(function (err) {
+              res.json(err);
+            });
+        })
+        .catch(function (err) {
+          res.json(err);
+        });
     })
     .catch(function (err) {
       res.json(err);
