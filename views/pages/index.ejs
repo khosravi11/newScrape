@@ -1,70 +1,241 @@
 <!DOCTYPE html>
 <html lang='en'>
-<head>
-  <meta charset='UTF-8'>
-  <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <title>Google News Scraper</title>
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' integrity='sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=' crossorigin='anonymous' />
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css' integrity='sha256-HEtF7HLJZSC3Le1HcsWbz1hDYFPZCqDhZa9QsCgVUdw=' crossorigin='anonymous' />
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet'>
-  </head>
-  <body>
-    <section>
-      <div class='container'>
-        <div class='columns'>
-          <div class='column'>
-            <div class='tile is-vertical notification'>
-              <div class='content'>
-                <h1 class='title is-1'>Hello, welcome to the Google News Scrapper</h1>
-              </div>
+   <head>
+      <meta charset='UTF-8'>
+      <meta name='viewport' content='width=device-width, initial-scale=1'>
+      <title>Fortnite</title>
+      <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' integrity='sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=' crossorigin='anonymous' />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="../../public/styles.css">
+   </head>
+   <style>
+   /* Colours */
+/* fonts */
+body {
+  font-family: 'Assistant', sans-serif;
+}
+h1, h2, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase;
+}
+h2 {
+  font-weight: 700;
+}
+h3 {
+  font-family: 'Assistant', sans-serif;
+  font-weight: 300;
+  text-transform: none;
+}
+p {
+  font-weight: 400;
+}
+strong {
+  font-weight: 700;
+}
+/* Utilities */
+.no-padding {
+  padding: 0 !important;
+}
+/* width */
+.container {
+  width: 1080px;
+}
+/* Table Heading */
+.pricing-top-heading th {
+  text-align: center;
+  font-weight: 700;
+  font-size: 2rem;
+  width: 25%;
+}
+.pricing-bottom-heading th {
+  padding: 0 2%;
+  font-weight: 300;
+}
+.pricing-top-heading .free {
+  background-color: #f26b42;
+  border: 1px solid #f26b42;
+}
+.pricing-bottom-heading .free {
+  background-color: #f28d6e;
+  border: 1px solid #f28d6e;
+}
+.pricing-top-heading .basic {
+  background-color: #58c5c7;
+  border: 1px solid #58c5c7;
+}
+.pricing-bottom-heading .basic {
+  background-color: #7fd1d2;
+  border: 1px solid #7fd1d2;
+}
+.pricing-top-heading .pro {
+  background-color: #a5c653;
+  border: 1px solid #a5c653;
+}
+.pricing-bottom-heading .pro {
+  background-color: #b9d17b;
+  border: 1px solid #b9d17b;
+}
+.pricing-top-heading .normal {
+  background-color: #ED9BFD;
+  border: 1px solid #ED9BFD;
+}
+.pricing-bottom-heading .normal {
+  background-color: #F6CBFE;
+  border: 1px solid #F6CBFE;
+}
+.pricing-top-heading, .pricing-bottom-heading {
+  color: white;
+  height: 90px;
+}
+table thead th {
+  border: 0;
+}
+/* table */
+table {
+  width: 100%;
+}
+.collapsible-section-header {
+  background-color: #e1e1e1;
+}
+.collapsible-section-header a {
+  color: #363636;
+  font-weight: 700;
+  text-decoration: none;
+}
+.collapsible-section-header a:after {
+  content: '\25bc';
+  padding-left: 0.5em;
+}
+.collapsible-section-header a.collapsed:after {
+  content: '\25ba';
+  padding-left: 0.5em;
+}
+tbody td {
+  background-color: #ededed;
+  border: 1px solid #d1d1d1;
+  padding: 1.25rem;
+}
+
+ </style>
+   <body>
+    <table>
+      <thead>
+        <tr class="pricing-top-heading">
+          <th class="free"><%=stats[0].epicUserHandle %></th>
+          <th class="basic"><%=stats[1].epicUserHandle %></th>
+          <th class="pro"><%=stats[2].epicUserHandle %></th>
+          <th class="normal"><%=stats[3].epicUserHandle %></th>
+        </tr>
+        <tr class="pricing-bottom-heading small">
+          <th class="free"><strong>Ideal for:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras porttitor pulvinar diam id interdum.</th>
+          <th class="basic"><strong>Ideal for:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras porttitor pulvinar diam id interdum.</th>
+          <th class="pro"><strong>Ideal for:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras porttitor pulvinar diam id interdum.</th>
+           <th class="normal"><strong>Ideal for:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras porttitor pulvinar diam id interdum.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Solos -->
+        <tr>
+          <td class="collapsible-section-header" colspan="4">
+            <a data-toggle="collapse" href="#collapse_section_one">Solos</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="no-padding" colspan="4">
+            <div id="collapse_section_one" class="collapse in">
+              <table style="width:100%">
+                <tr>
+                  <td><%= stats[0].stats.p2.top1.value%></td>
+                  <td><%= stats[1].stats.p2.top1.value%></td>
+                  <td><%= stats[2].stats.p2.top1.value%></td>
+                  <td><%= stats[3].stats.p2.top1.value%></td>
+                </tr>
+                <tr>
+                  <td><%= stats[0].stats.p2.top10.value%></td>
+                  <td><%= stats[1].stats.p2.top10.value%></td>
+                  <td><%= stats[2].stats.p2.top10.value%></td>
+                  <td><%= stats[3].stats.p2.top10.value%></td>
+                </tr>
+                <tr>
+                  <td><%= stats[0].stats.p2.top25.value%></td>
+                  <td><%= stats[1].stats.p2.top25.value%></td>
+                  <td><%= stats[2].stats.p2.top25.value%></td>
+                  <td><%= stats[3].stats.p2.top25.value%></td>
+                </tr>
+              </table>
             </div>
-            <div class='tile is-vertical notification'>
-                <a class='button is-info' id='getArticles'>Get Articles</a>
-                <br>
-                <a class='button is-info' id='myArticles' href='/saved'>My Saved Articles</a>
+          </td>
+        </tr>
+
+        <!-- Duos -->
+        <tr>
+          <td class="collapsible-section-header" colspan="4">
+            <a data-toggle="collapse" href="#collapse_section_two">Duos</a>
+          </td>
+        </tr>
+        <tr>
+          <td  class="no-padding" colspan="4">
+            <div id="collapse_section_two" class="collapse in">
+              <table style="width:100%">
+                <tr>
+                  <td><%= stats[0].stats.p10.top1.value%></td>
+                  <td><%= stats[1].stats.p10.top1.value%></td>
+                  <td><%= stats[2].stats.p10.top1.value%></td>
+                  <td><%= stats[3].stats.p10.top1.value%></td>
+                </tr>
+                <tr>
+                  <td><%= stats[0].stats.p10.top5.value%></td>
+                  <td><%= stats[1].stats.p10.top5.value%></td>
+                  <td><%= stats[2].stats.p10.top5.value%></td>
+                  <td><%= stats[3].stats.p10.top5.value%></td>
+                </tr>
+                <tr>
+                  <td><%= stats[0].stats.p10.top12.value%></td>
+                  <td><%= stats[1].stats.p10.top12.value%></td>
+                  <td><%= stats[2].stats.p10.top12.value%></td>
+                  <td><%= stats[3].stats.p10.top12.value%></td>
+                </tr>
+              </table>
             </div>
-                        <div class='content' id='articles'>
-              <% for (let i = 0; i < allresults.length; i++) { %>
-                <p>Title:  <%= allresults[i].title %>'
-                  <br />
-                  URL: <a href="<%= allresults[i].url %>" target="_blank"> <%= allresults[i].url %></a>
-                <br>
-                  <a data-id="<%= allresults[i].id %>" class="button is-info" id="saveArticles">Save Article</a>
-                </p>
+          </td>
+        </tr>
 
-                <% } %>
-
+        <!-- Squads -->
+        <tr>
+          <td class="collapsible-section-header" colspan="4">
+            <a data-toggle="collapse" href="#collapse_section_three">Squads</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="no-padding" colspan="4">
+            <div id="collapse_section_three" class="collapse in">
+              <table style="width:100%">
+                <tr>
+                  <td><%= stats[0].stats.p9.top1.value%></td>
+                  <td><%= stats[1].stats.p9.top1.value%></td>
+                  <td><%= stats[2].stats.p9.top1.value%></td>
+                  <td><%= stats[3].stats.p9.top1.value%></td>
+                </tr>
+                <tr>
+                  <td><%= stats[0].stats.p9.top3.value%></td>
+                  <td><%= stats[1].stats.p9.top3.value%></td>
+                  <td><%= stats[2].stats.p9.top3.value%></td>
+                  <td><%= stats[3].stats.p9.top3.value%></td>
+                </tr>
+                <tr>
+                  <td><%= stats[0].stats.p9.top6.value%></td>
+                  <td><%= stats[1].stats.p9.top6.value%></td>
+                  <td><%= stats[2].stats.p9.top6.value%></td>
+                  <td><%= stats[3].stats.p9.top6.value%></td>
+                </tr>
+              </table>
             </div>
-          </div>
+          </td>
+        </tr>
 
-        </div>
-      </div>
-    </section>
-
-  </body>
-  <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-  <script>
-    // Empty the notes from the note section
-    $('#getArticles').on('click', function () {
-      location.reload();
-    });
-
-    $(document).on('click', '#saveArticles', function () {
-      // Empty the notes from the note section
-      var id = $(this).data('id');
-
-      $(this).parent().fadeOut();
-      $(this).fadeOut();
-      console.log('/articles/' + id);
-      $.ajax({
-        method: 'POST',
-        url: '/articles/' + id
-      })
-        // With that done, add the note information to the page
-        .done(function (data) {
-
-        });
-    });
-
-  </script>
+      </tbody>
+    </table>
+   </body>
+   <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </html>
