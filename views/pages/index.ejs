@@ -1,70 +1,965 @@
-<!DOCTYPE html>
-<html lang='en'>
-<head>
-  <meta charset='UTF-8'>
-  <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <title>Google News Scraper</title>
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' integrity='sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=' crossorigin='anonymous' />
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css' integrity='sha256-HEtF7HLJZSC3Le1HcsWbz1hDYFPZCqDhZa9QsCgVUdw=' crossorigin='anonymous' />
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet'>
-  </head>
-  <body>
-    <section>
-      <div class='container'>
-        <div class='columns'>
-          <div class='column'>
-            <div class='tile is-vertical notification'>
-              <div class='content'>
-                <h1 class='title is-1'>Hello, welcome to the Google News Scrapper</h1>
+
+
+<html>
+   <head>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+      <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+      <link rel="stylesheet" href="app.css" />
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+      <script src="http://d3js.org/d3.v3.min.js"></script>
+      <script type="text/javascript" src="app.js"></script>
+   </head>
+   <style>
+
+   </style>
+   <body >
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+         <a class="navbar-brand" href="#"><img src="https://networkofcare4elearning.networkofcare4elearning.org/Images/logos/noc-footer-white.png"></a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+               <li class="nav-item active">
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="#" data-toggle="modal" data-target="#press">Press</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="#" data-toggle="modal" data-target="#contact">Contact</a>
+               </li>
+
+               <li class="nav-item">
+                  <a class="nav-link" href="#mapd">Client Map</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="http://mynetworkofcare.org/" target="_blank">MYNOC</a>
+               </li>
+            </ul>
+         </div>
+      </nav>
+      <div class="container-fluid">
+         <div class="row">
+            <div class="col px-0">
+               <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-pause="hover">
+                  <ol class="carousel-indicators">
+                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                     <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                  </ol>
+                  <div class="carousel-inner">
+                     <div class="carousel-item vh55  active" style="background-color: #6d0d88;">
+                        <div class="carousel-caption text-left">
+                           <h1>Mental Health/Behavioral Health</h1>
+                           <p>In my position as the Director of Operations at the Lorain County Board of Mental Health, it was my charge to bring the Network of Care for Mental Health online here locally... It provides us with a powerful, flexible way to promote the services and treatment options that are available in our local community.<span> - CHARLES A. NEFF Director of Operations<br>Lorain County, Ohio, Mental Health Board</span></p>
+                           <p>
+                            <a class="btn btn-lg btn-primary" href="http://www.sandiego.networkofcare.org/mh" target="_blank" role="button">View a Site</a>
+                            <a class="btn btn-lg btn-primary" href="#" role="button">Schedule a Demo</a></p>
+                        </div>
+                     </div>
+                     <div class="carousel-item vh55 " style="background-color: #7a9d41;">
+                        <div class="carousel-caption text-left">
+                           <h1>Seniors & People with Disabilities</h1>
+                           <p>The Network of Care has been a tremendous resource for both our staff and the folks we serve. The resources it places at our fingertips is amazing...We are tremendously pleased to be able to offer this to the people of San Diego.<span> - PAMELA SMITH Director<br>County of San Diego CA, Aging &amp; Independence Services</span></p>
+                           <p>
+                            <a class="btn btn-lg btn-primary" href="http://www.sandiego.networkofcare.org/mh" target="_blank" role="button">View a Site</a>
+                            <a class="btn btn-lg btn-primary" href="#" role="button">Schedule a Demo</a></p>
+                        </div>
+                     </div>
+                     <div class="carousel-item vh55 " style="background-color: #146e93;">
+                        <div class="carousel-caption text-left">
+                           <h1>Public Health Assessment and Wellness</h1>
+                           <p>The Network of Care is a local grant writer’s dream...For anyone interested in or in need of data, the site offers the most comprehensive health information, research and demographics available for Boyd and Greenup counties.<span> - Anthony G. Brown Lieutenant Governor of Maryland</span></p>
+                           <p>
+                            <a class="btn btn-lg btn-primary" href="http://www.sandiego.networkofcare.org/mh" target="_blank" role="button">View a Site</a>
+                            <a class="btn btn-lg btn-primary" href="#" role="button">Schedule a Demo</a></p>
+                        </div>
+                     </div>
+                     <div class="carousel-item vh55 " style="background-color: tan;">
+                        <div class="carousel-caption text-left">
+                           <h1>Service Veterans & Their Families</h1>
+                           <p>We are proud to be the first state in America to launch the Veterans Network of Care portal. We hope that other states follow our example and make veterans' health a leading priority.<span> - Chris Crum Director<br>Greenup County (KY) Health Department</span></p>
+                           <p>
+                            <a class="btn btn-lg btn-primary" href="http://www.sandiego.networkofcare.org/mh" target="_blank" role="button">View a Site</a>
+                            <a class="btn btn-lg btn-primary" href="#" role="button">Schedule a Demo</a></p>
+                        </div>
+                     </div>
+                  </div>
+                  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                  </a>
+               </div>
+            </div>
+         </div>
+         <div class="container mt-5 text-center">
+            <div class="row">
+               <div class="col-lg-4">
+                  <img class="rounded-circle" src="map.jpg" alt="Generic placeholder image" width="140" height="140">
+                  <h2>Service Directory</h2>
+                  <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+                  <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+               </div>
+               <!-- /.col-lg-4 -->
+               <div class="col-lg-4">
+                  <img class="rounded-circle" src="call-center.jpg" alt="Generic placeholder image" width="140" height="140">
+                  <h2>Call Center</h2>
+                  <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+                  <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+               </div>
+               <!-- /.col-lg-4 -->
+               <div class="col-lg-4">
+                  <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+                  <h2>Heading</h2>
+                  <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                  <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+               </div>
+               <!-- /.col-lg-4 -->
+            </div>
+         </div>
+         <!-- /.row -->
+         <div class="container mt-5 text-center">
+            <div class="row">
+               <!-- START THE FEATURETTES -->
+               <hr class="featurette-divider">
+               <div class="row featurette">
+                  <div class="col-md-7">
+                     <h2 class="featurette-heading">Mental Health/Behavioral Health</h2>
+                     <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                  </div>
+                  <div class="col-md-5 embed-responsive embed-responsive-16by9">
+                     <iframe class="embed-responsive-item" width="500" height="281" src="https://www.youtube.com/embed/fQs83KywEbk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe class="embed-responsive-item">
+                  </div>
+               </div>
+               <hr class="featurette-divider">
+               <div class="row featurette">
+                  <div class="col-md-7 order-md-2">
+                     <h2 class="featurette-heading">Seniors & People with Disabilities</h2>
+                     <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                  </div>
+                  <div class="col-md-5 order-md-1 embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" width="500" height="281" src="https://www.youtube.com/embed/ValLo8q9p5U" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe class="embed-responsive-item">
+                  </div>
+               </div>
+               <hr class="featurette-divider">
+               <div class="row featurette">
+                  <div class="col-md-7">
+                     <h2 class="featurette-heading">Public Health Assessment and Wellness</h2>
+                     <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                  </div>
+                  <div class="col-md-5 embed-responsive embed-responsive-16by9">
+                     <iframe class="embed-responsive-item" width="500" height="281" src="https://www.youtube.com/embed/eeFoh_x6DB4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe class="embed-responsive-item">
+                  </div>
+               </div>
+               <hr class="featurette-divider">
+               <div class="row featurette">
+                  <div class="col-md-7 order-md-2">
+                     <h2 class="featurette-heading">Service Veterans & Their Families</h2>
+                     <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                  </div>
+                  <div class="col-md-5 embed-responsive embed-responsive-16by9">
+                     <iframe class="embed-responsive-item" width="500" height="281" src="https://www.youtube.com/embed/_2lHGhtU6Mw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe class="embed-responsive-item">
+                  </div>
+               </div>
+               <hr class="featurette-divider">
+               <!-- /END THE FEATURETTES -->
+            </div>
+         </div>
+         <!-- /.row -->
+         <!-- Modal -->
+          <div class="modal fade" id="press" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Press Room</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+
+                <div class="modal-body press-body">
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=394">Website for Seniors Launches Tuesday</a> Jul 19, 2017</h2>
+                      <p>FAIRFIELD &mdash; Solano County will launch a senior-specific website on Tuesday to provide information on issues relevant to the aging population, their families and their caregivers.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=393">Network of Care Aims to Help Veterans Across Pennsylvania</a> May 31, 2017</h2>
+                      <p>POTTSVILLE -- The click of a mouse can now help veterans in Schuylkill County ease back into civilian life. State lawmakers joined Pottsville Career Link to show off a website called "Network of Care" designed specifically for veterans.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=389">New website to help those struggling with mental illness</a> May 10, 2017</h2>
+                      <p>MENASHA (WLUK) -- A website just launched, to help people struggling with mental illness.</p>
+                      <p>The site rolled out just in time to honor May, as it is national Mental Health Awareness Month.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=390">Fox Valley mental health resource website launches</a> May 10, 2017</h2>
+                      <p>GRAND CHUTE, Wis. (WBAY-TV) MyconnectionNEW.org has been in the making since 2010 and Thursday at Fox Valley Tech, Northeast Wisconsin Mental Health connection in collaboration with United Way Fox Cities 211; the site finally launched.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=391">Kids in Crisis | Need mental health help? There's a site for that</a> May 10, 2017</h2>
+                      <p>NEENAH - When Jen Zenzick lost her sister to suicide, Zenzick was left with questions she'd never get answers to. Among them: What if help had been only a click away? Would things be different?</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=392">Agencies join together to kick off May Mental Health Awareness Month</a> May 5, 2017</h2>
+                      <p>The Northeast Wisconsin Mental Health Connection and its members will host the 5th annual Mental Health Awareness Month kick-off event in Appleton on Thursday, May 11.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=388">Gov. Wolf Launches Network of Care Sites for Veterans, Active Military and Their Families Across Pennsylvania</a> Nov 10, 2016</h2>
+                      <p>Harrisburg, PA &ndash; Governor Tom Wolf today joined Adjutant General Anthony Carrelli and Secretary of Human Services Ted Dallas to announce the launch of the Network of Care site for veterans, military members and their families, which seeks to centralize services and benefits available to them.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=387">How Counties Use the Network of Care to Reach Out to Constituents</a> July 26, 2016</h2>
+                      <p><br />Here's a wonderful example of how one county uses the Network of Care to reach the people it serves. This&nbsp;<a href="http://networkofcare.org/content/client/214/Network%20of%20Care%20Rack%20Card.pdf">promo card</a>&nbsp;comes from Worcester County, Md.&nbsp;</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=386">Department of Health launches 'Network of Care' website</a> Mar 23, 2016</h2>
+                      <p>INDIAN RIVER COUNTY &mdash; The Florida Department of Health in Indian River has launched an innovative, local-delivery web portal to enhance health decision-making by providing community stakeholders, families and individuals with key health data and resources in an easy-to-read format.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=385">Cabarrus Health Alliance and Cabarrus County Partners Launch Network of Care Site</a> Feb 05, 2016</h2>
+                      <p>Community-based website will improve access to services and health decision-making for residents.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=384">Healthy Communities Coalition Partners Launch Network of Care for Public Health for Montgomery, 7 Other Kentucky Counties</a> Jan 26, 2016</h2>
+                      <p>Montgomery County Healthy Communities Coalition partners have launched an innovative, free, online web portal to enhance health decision-making by providing community stakeholders, families and individuals with key health information and resources in an easy-to-read format.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=383">Need help during winter weather? Check the (Cabarrus County, N.C.) Network of Care for Public Health</a> Jan 21, 2016</h2>
+                      <p>With the dropping temperatures and the snow clouds rolling in, heat is a necessity for safety. Those in need of heating assistance now have a new venue to search for services.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=382">Website offers help for foster families</a> Dec 07, 2015</h2>
+                      <p>Foster parents in Ventura County now have an online resource to help them meet the needs of the children in their care. The Network of Care for Foster Care portal links users to a number of public and private services in the county through a browsable search engine.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=380">Ventura County Launches Breakthrough Program for Foster-Care Management</a> Nov 23, 2015</h2>
+                      <p>Ventura County, Calif., just launched a new and highly innovative care-management program for foster-care children that centers on creative use of the Internet.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=379">Healthy Choices Healthy Communities Launches Network of Care in Boyd and Greenup Counties, Ky. </a> Nov 04, 2015</h2>
+                      <p>GREENUP, Ky. &ndash; Healthy Choices, Healthy Communities (HCHC), the coalition whose mission is improving community wellbeing, has launched a free online health resource: the&nbsp;<a href="http://boyd-greenup.ky.networkofcare.org/ph/">HCHC Network of Care</a>.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=378">New Web Sites Offer Easy Access to Domestic Violence, Public Health and Re-entry Data and Services</a> Nov 04, 2015</h2>
+                      <p>SAN DIEGO &ndash; The County of San Diego has launched three innovative Web portals to make accessing local and national health and safety data and resources easier. The portals, hosted by Network of Care, provide directories of local public health, domestic violence and re-entry services. They also have resource libraries and encyclopedias, social networking, policy documents and news updates.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=377">Foster Care App Designed for Easy Access to Health Records</a> Oct. 28, 2015</h2>
+                      <p>VENTURA, Calif. (KABC) -- A local agency created a system designed to keep foster parents better informed about the children in their care.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=375">Foster parents get vital online tool to check children's records</a> Oct. 16, 2015</h2>
+                      <p>VENTURA, Calif. - Foster parents searching for records on the health conditions and education of the children in their care can now get them quickly through an online tool, officials said Tuesday.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=374">Network of Care now offers help to service members, veterans and families</a> Aug. 24, 2015</h2>
+                      <p>Help for veterans and service members in Nebraska is now just a few clicks away, thanks to a new program called Network of Care.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=381">Bexar County, Texas, offers new Web site for veterans</a> May 22,2015</h2>
+                      <p>An important new tool in assisting our returning service members is now at work in Bexar County, Texas &ndash; the<a href="http://bexar.tx.networkofcare.org/veterans">&nbsp;Network of Care for Veterans, Service Members &amp; Their Families</a>.&nbsp;</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=373">Solano County, California launches Network of Care Website</a> May 21, 2015</h2>
+                      <p>Solano County residents can now establish, view and access their own health records as part of Health and Social Service&rsquo;s new Network of Care, putting the consumer in charge of their own health management, county officials announced.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=372">Solano County launches Network of Care website</a> May 19, 2015</h2>
+                      <p>Residents of Solano County can now establish, view and access their own health records as part of Health and Social Service&rsquo;s new Network of Care, www.solanocares.org, putting the consumer in charge of their own health management.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=370">Connecting the Dots for Veterans</a> April 28, 2015</h2>
+                      <p>Just four days after coming home to Northeast Philadelphia from Iraq in 2003, Tim Wynn got into a bar fight. The Marine was arrested for the first time in his life.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=371">HOME LINES: Montgomery County Tennessee's Website for Veterans Will Make Difference</a> April 27, 2015</h2>
+                      <p>In case you missed the announcement last week, I thought I&rsquo;d write a little bit about this new Montgomery County Veterans Network of Care website that was launched on the 24th of this month.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=368">Montgomery County, Tenn., Unveils Veterans Website</a> April 24, 2015</h2>
+                      <p>CLARKSVILLE, Tenn. &ndash; Montgomery County Mayor Jim Durrett proudly introduced the Veterans Network of Care website at an unveiling ceremony in Civic Hall on Friday. The room was filled with dignitaries from Montgomery County and Fort Campbell, including U.S. Rep. Marsha Blackburn.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=367">Montgomery County, Tenn., Creates Veterans Network of Care</a> April 20, 2015</h2>
+                      <p>Montgomery County government has created the Veterans Network of Care, a breakthrough Web solution for individuals, families and agencies concerned with veterans' issues.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=369">Dakota County (Neb.) Health Department launches Network of Care website </a> March 19, 2015</h2>
+                      <p>The Dakota County Health Department, in partnership with Nebraska Association of Local Health Directors, launched the Network of Care website on April 1 to provide an array of health care information and tools for the community to utilize.&nbsp;</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=366">DHMH Launches New State Health Improvement Process Website on Network of Care Platform</a> May 21, 2014</h2>
+                      <p>The Maryland Department of Health and Mental Hygiene (DHMH) has launched the new State Health Improvement Process (SHIP) website hosted by Trilogy Integrated Resources LLC on the Network of Care platform at <a href="http://dhmh.maryland.gov/ship/">http://dhmh.maryland.gov/ship/</a>.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=357">Oakland County, Mich., Launches the Network of Care for Public Health</a> April 28, 2014</h2>
+                      <p>Public health leaders in Oakland County, Mich., are the latest to deploy the award-winning Network of Care for Public Health Assessment and Wellness &ndash; a Web-based platform that converts analysis of all health data into customized community health indicators. This groundbreaking tool is especially valuable for assessment, health planning, and public-health accreditation.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=355">Ohio Launches Network of Care for Public Health Assessment &amp; Wellness</a> Feb. 21, 2014</h2>
+                      <p>The Ohio Department of Health (ODH), local health departments and their stakeholders, will now have access to local and state public health indicators, model practices and local collaboration tools from around the nation. The site integrates statistics from national, state and other sources into a collection of more health and quality-of-life indicators specific for each health jurisdictions and the state of Ohio. Indicators also include Healthy People 2020 targets1, historical data per counties and evidence-based intervention.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=354">New site for Montana veterans up and running</a> Feb. 5, 2014</h2>
+                      <p>Veterans have a new online tool to find health, employment, benefit and other resources tailored specifically to Montana veterans.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=353">New website launches to help Montana veterans</a> Feb. 4, 2014</h2>
+                      <p>Lieutenant Governor John Walsh announced the launch of a new website to help military personnel transition to civilian life.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=358">Ventura County, Calif., Adopts the Network of Care to Better Serve Children and Families</a> Feb. 4, 2014</h2>
+                      <p>Barry Zimmerman, director of the Ventura County Human Services Agency, announced that the county has deployed the award-winning program called theNetwork of Care for Children and Family Services. This is a highly customized, local Web portal that serves more like a &ldquo;virtual community&rdquo; or one-stop shop for health and social-service issues for children and families in the area.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=364">Chenango County, NY, and Barnstable County, Mass., Adopt the Network of Care for Public Health</a> Jan. 31, 2014</h2>
+                      <p>Public-health leaders in Chenango County, N.Y., and Barnstable County, Mass., are the latest to deploy the award-winning Network of Care for Public Health Assessment and Wellness &ndash; a Web-based platform that converts analysis of all health data into customized community health indicators. This groundbreaking tool is especially valuable for assessment, health planning, and public-health accreditation.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=352">Meyer: Network of Care website provides straight facts</a> Dec. 14 2013</h2>
+                      <p>Thanks to the Larimer County Office on Aging, Adult Resources for Care and Help, or ARCH, there is a good resource available. In Larimer County, the Network of Care website is a perfect place for seniors, people with disabilities, caregivers, families and service providers to research a variety of pertinent topics.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=350">New Website to Promote and Measure Community Health Improvement in Eau Claire County, Wis.</a> Nov. 18, 2013</h2>
+                      <p>Eau Claire County now has a new tool that will help monitor the health and wellness of our community.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=362">Safety Net of Care Sought for Troops, Vets</a> Nov. 12, 2013</h2>
+                      <p>A new coalition of health care providers and nonprofit organizations across the Pikes Peak region aims to ensure that soldiers, veterans or their families don&rsquo;t slip through the cracks when seeking medical and behavioral health care.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=356">Colorado&rsquo;s Alpine Area Agency on Aging is latest to join Network of Care </a> Sept. 11, 2013</h2>
+                      <p>The Alpine Area Agency on Aging, representing the Colorado counties of Eagle, Grand, Jackson, Pitkin and Summit, launched its Network of Care for Seniors &amp; People with Disabilities on Sept. 11, announced AAA Program Director Jean Hammes.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=363">1st Judicial District Launches First Online Prisoner Reentry Resource</a> Aug. 22, 2013</h2>
+                      <p>The Legal Intelligencer &ndash; the oldest law journal in the United States &ndash; published an article Aug. 22 recognizing Philadelphia&rsquo;s First Judicial District for its recent launch of the Network of Care for Prisoner Reentry.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=365">New Nebraska Network of Care Offers Interactive Health Information </a> Aug. 9, 2013</h2>
+                      <p>KOLN/KGIN (Channel 10/11) in Lincoln/Grand Island, Neb., aired a segment about the newly launched Nebraska Network of Care for Public Health Assessment and Wellness. Read on below &ndash; or click the video screen to hear Teresa Anderson, president of the Nebraska Association of Local Health Directors, explain why the Network of Care is critical to &ldquo;guide the work&rdquo; of public-health policy makers throughout her state.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=361">Nebraska Launches Network of Care for Public Health</a> Aug. 8, 2013</h2>
+                      <p>Nebraska will launch its Network of Care for Public Health Assessment and Wellness today to serve policy makers and residents statewide.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=360">Nevada Launches Network of Care for Public Health Statewide</a> June 27, 2013</h2>
+                      <p>The Nevada Division of Public and Behavioral Health launched its Network of Care for Public Health Assessment and Wellness today to serve policy makers and residents statewide.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=359">Judicial District in Philadelphia Launches Network of Care for Prisoner Reentry</a> April 24, 2013</h2>
+                      <p>The Network of Care, which has been widely successful across the nation in the behavioral-health field, has made a logical jump into the criminal-justice system. The goal: to assist in better managing persons with behavioral-health issues as they return to society. The result is a new portal that can easily be used by the court/probation system to refer persons into needed treatment and recovery programs.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=348"> Garrett County Health Department Launches The Network of Care For Public Health Assessment and Wellness</a> Feb. 28, 2013</h2>
+                      <p>Garrett County has launched an innovative, local-delivery Web portal to enhance health decision-making by providing community stakeholders, families and individuals with key health data and resources in an easy-to-read format. The Network of Care for Public Health Assessment and Wellness <a href="http://www.trilogyir.com/www.networkofcare.org">(www.networkofcare.org)</a> provides a directory of all health services; a leading health library and encyclopedia; social networking; legislative tools; nationwide news; personal health records, and much more.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=347">Trilogy&mdash;Changing the Way We Look at Community Health Data</a> January 23, 2013</h2>
+                      <p>The Network of Care for Public Health Assessment and Wellness allows anyone to measure and track health indicators.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=346">Hawai&rsquo;I Governor Lauds Network of Care in State of the Union Address</a> January 22, 2013</h2>
+                      <p>Gov. Abercrombie points up the Network of Care&rsquo;s Web site for Service Members, Veterans &amp; Their Families as &ldquo;state of the art.&rdquo;</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=345">Wicomico County Launches the Network of Care for Public Health Assessment and Wellness &ndash; A Community-Based Web Site to Enhance Health Decision-Making </a> December 4, 2012</h2>
+                      <p>The Network of Care for Public Health Assessment and Wellness is a pilot program for Maryland and the nation.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=344">SEN. BENNET: Let's Provide Jobs for Our Newest Veterans</a> November 10, 2012</h2>
+                      <p>Colorado's U.S. Senator Michael F. Bennet (D) singles out Network of Care Web site as a &ldquo;new model&rdquo; in providing a Web-based information resource for military families and veterans.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=339">AAA Launches Network of Care</a> October 24, 2012</h2>
+                      <p>The Network of Care provides a resource for disabled adults and senior citizens, and offers a continuum of care.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=340">PPACG Launches Web Site for Seniors</a> October 23, 2012</h2>
+                      <p>The Network of Care Web site gives seniors access to local services for Alzheimer's, caregiver support, housing and transportation.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=338">Idaho Launches NACo's Public Health Assessment and Wellness Tool</a> October 22, 2012</h2>
+                      <p>The Network of Care provides a state-of-the-art set of community health indicators in 170 categories, all customized for each health district and county.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=341">Network of Care Web Site for Calaveras County Families Launched</a> October 19, 2012</h2>
+                      <p>The local Network of Care Web site (<a href="http://www.calaveras.networkofcare.org/">www.calaveras.networkofcare.org</a>) now includes a health library, encyclopedia, and local resource and service information for persons of all ages.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=335">Expanded Health Web Site Provides Information for All Ages</a> October 19, 2012</h2>
+                      <p>The Network of Care sites for Calaveras County address a broad spectrum of the county&rsquo;s health and social needs.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=337">One-Stop Site Helps Boomers Care for Elderly Parents</a> October 19, 2012</h2>
+                      <p>Pikes Peak Area Council of Governments Area Agency on Aging launches Network of Care Seniors and People with Disabilities to aid Boomers, caregivers.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=334">First 5 Calaveras Launches Community-Based Web Sites for Seniors &amp; People with Disabilities; Kids; Children, Youth &amp; Families; Developmental Disabilities; Domestic Violence; Public Health Assessment and Wellness and Probation Services</a> October 18, 2012</h2>
+                      <p>The Network of Care (<a href="http://www.networkorcare.org/">www.networkorcare.org</a>) empowers residents of Calaveras County with new Web sites complementing a wide variety of existing social services.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=336">Web Site Helps the Vulnerable</a> October 17, 2012</h2>
+                      <p>Network of Care hopes to eliminate some of the confusion for seniors and people with disabilities, and their caregivers when seeking services.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=333">Pikes Peak Area Council of Governments Unveils Community-Based Web Site for Seniors, People with Disabilities, Caregivers and Service Providers</a> October 17, 2012</h2>
+                      <p>The Network of Care (<a href="http://www.networkorcare.org/">www.networkorcare.org</a>) empowers seniors and people with disabilities and makes in-home care easier with online access to comprehensive services available within the Pikes Peak region. (<a href="http://www.pikespeak.co.networkofcare.org/aging">www.pikespeak.co.networkofcare.org/aging</a>).</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=343">Network of Care Site for Seniors and People with Disabilities Launched</a> October 17, 2012</h2>
+                      <p>The purpose of the site is to provide an easy-to-use Web site to meet the increasing demand for information and services for seniors and adults living with disabilities.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=342">Web Site Creates One-Stop-Shopping Experience for Seniors, Disabled</a> October 16, 2012</h2>
+                      <p>The Network of Care&rsquo;s Pikes Peak Area Seniors &amp; People with Disabilities&rsquo; Web site is a gold mine of information, referrals and resources on a broad variety of subjects, including health care, financial assistance, transportation and housing, grieving and stress.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=330">Idaho Health Districts Launch Network of Care Web Portal</a> September 23, 2012</h2>
+                      <p>The Network of Care program will serve as a clearinghouse for lawmakers, public health leaders and stakeholders to glean the latest data on Idaho's quality of care. The site will feature as many as 170 health indicators, by county.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=332">Idaho Public Health Districts Unveil Statewide Network of Care for Public Health</a> September 22, 2012</h2>
+                      <p>Web portal makes health and wellness resources readily available for community leaders and individuals.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=331">Idaho Public Health Districts Unveil Statewide Network of Care for Public Health</a> September 20, 2012</h2>
+                      <p>Web portal makes health and wellness resources readily available for community leaders and individuals statewide.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=329">Idaho Launches the Award-Winning Network of Care for Public Health Statewide</a> September 18, 2012</h2>
+                      <p>The Network of Care provides a state-of-the-art set of Community Health Indicators for Idaho in 170 categories, all customized for each health district and county.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=327">Network of Care Website for Calaveras County Families Launched</a> August 30, 2012</h2>
+                      <p>The Calaveras Network of Care (<a href="http://www.calaveras.networkofcare.org">www.calaveras.networkofcare.org</a>) empowers community online access to comprehensive services available within Calaveras County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=328">Network of Care for Veterans, Families Comes to Hawaii </a> August 27, 2012</h2>
+                      <p>The Hawai&rsquo;i Network of Care provides service members and their families with comprehensive information to help them reintegrate into their communities upon return from active duty.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=325">'Network of Care' for Hawai&rsquo;i's Military Members Launched</a> August 23, 2012</h2>
+                      <p>New Web portal launched that's designed to provide veterans, National Guard members, active-duty and reservists based in Hawai'i with quick access to health care and employment resources.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=326">Hawaii's Leaders Praise State's New Network of Care for Veterans</a> August 16, 2012</h2>
+                      <p>Gov. Abercrombie says this project was an example of how the State of Hawai&lsquo;i is using Internet communication technology to better serve its citizens.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=324">Hawai'i Launches Hawai'i Network of Care for Service Members, Veterans &amp; Their Families Statewide</a> August 16, 2012</h2>
+                      <p>The Hawai&rsquo;i Network of Care for Service Members, Veterans &amp; Their Families (<a href="http://www.hawaii.networkofcare.org/">www.Hawaii.NetworkofCare.org</a>) empowers veterans, service members, their families and service providers by providing online access to comprehensive services available statewide in Hawai&rsquo;i.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=322">Santa Clara County Public Health Department Unveils Community-Based Web Site for Seniors, People with Disabilities, Caregivers and Service Providers</a> January 31, 2012</h2>
+                      <p>The Network of Care (<a href="http://www.networkorcare.org/">www.networkorcare.org</a>) empowers seniors and people with disabilities and makes in-home care easier with online access to comprehensive services available within Santa Clara County (<a href="http://www.santaclara.networkofcare.org/aging">www.santaclara.networkofcare.org/aging</a>).</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=323">Santa Clara County Launches the Network of Care for Healthy Communities &ndash; A Community-Based Web Site to Enhance Health Decision-Making </a> January 31, 2012</h2>
+                      <p>The Network of Care for Healthy Communities, developed in partnership with the Healthy Communities Institute, is a pilot program for California and the nation.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=321">New Plan to Help Vets Find Work After War</a> December 27, 2011</h2>
+                      <p>Pikes Peak Area Network of Care for Service Members, Veterans &amp; Their Families&rsquo; provides veterans and their families with a one-stop Web site for all the services they need.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=320">Curry County Launches Network of Care for Public Health &ndash; A Community-Based Web Site to Enhance Health Decision-Making</a> November 4, 2011</h2>
+                      <p>The Network of Care for Public Health, developed in partnership with the Healthy Communities Institute, is a pilot program for Oregon and the nation.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=319">Worcester County Health Department Launches Network of Care for Healthy Communities &ndash; A Community-Based Web Site to Enhance Health Decision-Making</a> November 1, 2011</h2>
+                      <p>The Network of Care for Healthy Communities, developed in partnership with the Healthy Communities Institute, is a pilot program for Maryland and the nation.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=318">New User-Friendly Worcester County Network of Care for Healthy Communities Web Site Launched</a> November 1, 2011</h2>
+                      <p>The Worcester County Health Department has launched a new user-friendly Web portal to enhance decision making. The site provides health data and resources in an easy-to-read format for community stakeholders, families and individuals.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=317">Green Education On Line Introduces Their On Line Through Trilogy Integrated Resources </a> October 27, 2011</h2>
+                      <p>Trilogy Integrated Resources' Network of Care eLearning platform can save local governments money and assist them in becoming more environmentally aware with their community planning efforts.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=316">New Online Service for Veterans</a> October 4, 2011</h2>
+                      <p>Snohomish County launches Network of Care for Service Members,Veterans &amp; Their Families' Web site, a unique online "one-stop shop."</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=315">Network Works to Ensure Former Warriors Can Fit Back In</a> October 2, 2011</h2>
+                      <p>Snohomish County's new Web provides information on local, state and federal services and benefits, including employment, counseling, social networking, housing and other help for veterans and military families.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=314">Snohomish County Unveils Veterans' Care Network</a> September 26, 2011</h2>
+                      <p>Web site links veterans to federal benefits' programs, and state and local employment, housing, assistance and counseling resources and more.&nbsp;</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=313">Snohomish County Division of Chemical Dependency, Mental Health &amp; Veteran's Services Launches the Network of Care for Service Members, Veterans and Their Families</a> September 26, 2011</h2>
+                      <p>The Snohomish County Network of Care (<a href="http://snohomish.wa.networkofcare.org/Veterans/">http://snohomish.wa.networkofcare.org/Veterans/</a>) empowers veterans, service members, their families and service providers by providing online access to comprehensive services available in Snohomish County, WA.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=312">Allegany/Western Steuben Rural Health Network Launches Allegany County Network of Care for Healthy Communities &ndash; A Community-Based Web Site to Enhance Health Decision-Making </a> September 23, 2011</h2>
+                      <p>The Network of Care for Healthy Communities, developed in partnership with the Healthy Communities Initiative, is a pilot program for New York and the nation.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=310">Network of Care Featured at Three National Conferences</a> August 19, 2011</h2>
+                      <p>NACo showcases two of the nine NOC Web portals at annual conference in Multnomah County, OR.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=309">Napa County Health and Human Services Agency Launches NapaHealthMatters.org &ndash; A Community-Based Web Site to Enhance Health Decision-Making in Napa County, CA</a> August 18, 2011</h2>
+                      <p>The Network of Care for Public Health and Healthy Communities, developed in partnership with the Napa County Health and Human Services Agency, is a pilot program for California and the nation.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=308">Team San Diego Aging &amp; Disability Resource Center Awarded the 2011 Trilogy </a> June 22, 2011</h2>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=307">Pikes Peak Area Council of Governments Launches the Network of Care for Veterans, Service Members, Their Families and Service Providers</a> May 5, 2011</h2>
+                      <p>The Pikes Peak Area Council of Governments&rsquo; Network of Care for Service Members, Veterans &amp; Their Families (<a href="http://pikespeak.co.networkofcare.org/Veterans/home/index.cfm">http://pikespeak.co.networkofcare.org/Veterans/</a>) empowers veterans, service members, their families and service providers by providing online access to comprehensive services available in the Pikes Peak area of Colorado.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=306">Linn County Public Health Launches the Network of Care for Healthy Communities &ndash; A Community-Based Web Site to Enhance Health Decision-Making in Linn County, Iowa</a> April 27, 2011</h2>
+                      <p>The Linn County Network of Care for Healthy Communities, developed in partnership with Linn County Public Health, is a pilot program for Iowa and the nation.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=305">Detroit-Wayne County, Mich., Unveils Community-Based Web Site for People with Mental Health Issues, Their Families and Service Providers</a> April 20, 2011</h2>
+                      <p>Network of Care (<a href="http://www.networkofcare.org/">www.networkofcare.org</a>) empowers people with mental health issues, their families and service providers by providing online access to comprehensive services available in Wayne County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=304">County Government Works: TEAM San Diego &ndash; A Network of Care for the Most Vulnerable</a> April 14, 2011</h2>
+                      <p>During County Government Month in April, CSAC is presenting blogs and short video features on 14 award-winning programs from 10 counties that demonstrate effective, original and cost-conscious ways counties are serving their citizens.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=303">Ohio AAA8 Honors Meigs County Director, Opens Network of Care Web Site</a> April 5, 2011</h2>
+                      <p>Director of the Meigs County Council on Aging agency feted, announces new Southeast Ohio Network of Care web site, a resource for seniors and people with disabilities.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=311">TarrantCares.org Launches &ndash; Online Site Provides Local Services, Libraries and More</a> March 30, 2011</h2>
+                      <p>Tarrant Cares provides a &lsquo;no wrong door&rsquo; strategy that links consumers, family members, professionals and others to service providers in our community.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=302">Network of Care Being Created to Aid Veterans</a> March 26, 2011</h2>
+                      <p>When a soldier is preparing for deployment and needs special military information to get ready, Network of Care can provide it.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=301">Center for Technology and Aging's </a> February 15, 2011</h2>
+                      <p>Collaboration with Administration on Aging and centers for Medicare and Medicaid services focuses on improving hospital transitions.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=300">Oregon National Guard Launches Fort Oregon Network of Care Statewide</a> 10/15/2010</h2>
+                      <p>Oregon National Guard introduces 36 county-based Web sites to meet the needs of its returning service members, their families, and service providers.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=299">Oregon National Guard Develops Fort Oregon Network of Care for Veterans, Service Members, Their Families and Service Providers</a> October 14, 2010</h2>
+                      <p>The Fort Oregon Network of Care (<a href="http://www.fortoregon.org/">http://www.fortoregon.org</a>) empowers veterans, service members, their families and service providers by providing online access to comprehensive services available statewide in Oregon.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=298">LRGVDC Unveils Community-Based Web Site for Seniors, People with Disabilities, Caregivers and Service Providers</a> October 8, 2010</h2>
+                      <p>The Network of Care (<a href="http://alameda.nocbeta.org/aging/admin/aboutus/www.networkofcare.org">www.networkofcare.org</a>) empowers seniors and people with disabilities and makes in-home care easier with online access to comprehensive services available within the Lower Rio Grande Valley (<a href="http://alameda.nocbeta.org/aging/admin/aboutus/www.lrgv.tx.networkofcare.org">www.lrgv.tx.networkofcare.org</a>).</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=297">Ohio&rsquo;s Area Agency on Aging 10B, Inc., Unveils Community-Based Web Site for Seniors, People with Disabilities, Caregivers and Service Providers</a> September 15, 2010</h2>
+                      <p>Network of Care (<a href="http://alameda.nocbeta.org/aging/admin/aboutus/www.networkofcare.org">www.networkofcare.org</a>) empowers seniors and people with disabilities and makes in-home care easier with online access to comprehensive services available in Portage, Stark, Summit and Wayne counties<em>.</em></p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=296">County Showcases Innovative Local Health Data Pilot to Obama Administration</a> June 11, 2010</h2>
+                      <p>Sonoma County Board of Supervisors Chairwoman Valerie Brown leads successful effort before Secretary of Health and Human Services Kathleen Sebelius.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=294">Innovations Inspired by Liberation of Data: Network of Care for Healthy Communities</a> June 3, 2010</h2>
+                      <p>Following the liberation of several <a href="http://www.hhs.gov/open/">government health datasets</a> in March, app developers dashed to see what they could build in 12 short weeks to visualize and make sense of the data. They showcased their solutions and applauded HHS Secretary Kathleen Sebelius' assertion that "government should be transparent, open, participatory."</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=295">Making Community Health Information as Useful as Weather Data</a> June 2, 2010</h2>
+                      <p>Open health data from Health and Human Services is driving more than 20 new apps.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=293">Montana DPHHS Network of Care Web Site Helps People Find Mental Health Services</a> May 3, 2010</h2>
+                      <p>The site includes a comprehensive directory of mental health resources in Montana, a library of articles from the leading mental health experts, a directory of all public and private insurance options for mental health coverage, a federal and state legislative bill-tracking system and a section for providers.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=291">Denver Launches Site Listing Help for Seniors</a> April 19, 2010</h2>
+                      <p>The Denver Regional Council of Governments last week launched an online database listing service providers, medical and drug information, medical supply resources and numerous other links aging adults might need.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=289">Public Health Division of the Sonoma County Department of Health Services Launches Community-Based Web Site for Public Health and Health Communities</a> April 9, 2010</h2>
+                      <p>The Network of Care for Public Health and Healthy Communities, developed in partnership with the Public Health Division of the Sonoma County Department of Health Services, is a pilot program for California and the nation.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=287">Area Agency on Aging of the Lower Rio Grande Valley Unveils Community-Based Web Site for Seniors, People with Disabilities, Caregivers and Service Providers</a> April 9, 2010</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers seniors and people with disabilities and makes in-home care easier with online access to comprehensive services available in the Lower Rio Grande Valley.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=288">Denver Regional Council of Governments Area Agency on Aging Unveils Community-Based Web Site for Seniors, People with Disabilities, Caregivers and Service Providers</a> April 7, 2010</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers seniors and people with disabilities and makes in-home care easier with online access to comprehensive services available in the greater Denver area.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=286">Continuing Education at Alliant Announces Trilogy-Network of Care Partnership</a> March 29, 2010</h2>
+                      <p>Focus of the Alliant/Trilogy-Network of Care partnership is classes delivered over the internet to counties for convenient management and tracking of employee training requirements.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=290">Clackamas County Department of Health, Housing &amp; Human Services Unveils Community-Based Web Site for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> March 15, 2010</h2>
+                      <p>Network of Care (<a href="http://www.networkofcare.org/">www.networkofcare.org</a>) empowers people with mental illness, mental retardation or substance abuse issues,their families and service provides by providing online access to comprehensive services available in Clackamas County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=285">Web Site Offers Resources for Young, Old and Disabled People in Summit</a> March 8, 2010</h2>
+                      <p>New Web site offers Summit County residents access to information and services for children, families, seniors and people with disabilities.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=284">Behavioral Health Site Launched in Maine&rsquo;s Tri-County Area</a> November 9, 2009</h2>
+                      <p>New Tri-County Network of Care Web site supports self-care designed for people exploring physical and emotional wellness and for their providers.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=280">New Social Services Web Site Is &lsquo;211 Supercharged&rsquo;</a> October 16, 2009</h2>
+                      <p>Clark County of Ohio's new Network of Care for Families and Children Web site provides a resource for clients as the need for services grows and dollars to provide services shrink.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=281">Clark County, Ohio, Unveils Community-Based Web Site for Children, Their Families and Service Providers</a> October 15, 2009</h2>
+                      <p>Network of Care (<a href="http://www.networkofcare.org/">www.networkofcare.org</a>) empowers children, their families and service providers by providing online access to comprehensive services available within Clark County, Ohio.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=278">Foundation Launches Online Care Network for Kids' Behavioral Health</a> September 23, 2009</h2>
+                      <p>Network of Care Web site offers online information for individuals, families, and agencies concerned with mental and emotional wellness, and is the first project to come out of the Williamsburg Community Health Foundation&rsquo;s Children&rsquo;s Behavioral Health Initiative.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=276">California Veterans Care Effort Must Go National </a> July 31, 2009</h2>
+                      <p>California governor Arnold Schwarzenegger touts the Network of Care for Veterans &amp; Service Members' Web sites as an extraordinary collaboration between mental health and military communities that links vets and families suffering from the effects of war.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=277">Community Mental Health Board of Oak Park Township, IL, Launches Network of Care for Behavioral Health Web Site</a> July 17, 2009</h2>
+                      <p>New Web site contains a comprehensive list of sources and information on mental health, substance abuse and developmental problems for local residents.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=292">Montana Department of Public Health and Human Services Unveils Community-Based Web Site for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> June 10, 2009</h2>
+                      <p>Network of Care (<a href="http://www.networkofcare.org/">www.networkofcare.org</a>) empowers people with mental illness, mental retardation or substance abuse issues, their families and service provides by providing online access to comprehensive services available in the state of Montana.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=274">Gov. Schwarzenegger Unveils Web Tool Connecting Veterans &amp; Service Members to Employment, Education, Social &amp; Medical Services</a> May 25, 2009</h2>
+                      <p>New Web site connects veterans and service members to a statewide internet-based network of services and was developed at no additional taxpayer cost.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=273">Governor Schwarzenegger to Launch Veteran Services Web Portal</a> May 22, 2009</h2>
+                      <p>California's Governor Schwarzenegger officially launches Web sites aimed at helping the more than two million veterans statewide find needed programs and services.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=272">Governor Arnold Schwarzenegger Announces Launch of Groundbreaking Tool to Help Veterans</a> May 22, 2009</h2>
+                      <p>On Friday, May 22, 2009, Governor Arnold Schwarzenegger will launch a revolutionary site he calls "our NETWORK OF CARE." Network of Care is a state-of-the-art website that provides a direct link between members of the California military community in need of services and the specific organizations that can help them.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=271">New Web Site Helps Veterans and Service Members Find Resources</a> May 21, 2009</h2>
+                      <p>Sponsored by California's county mental health agencies, the Network of Care's Veterans &amp; Service Members' Web site <a href="http://www.veterans.networkofcare.org/">www.veterans.networkofcare.org</a> aims to mend a fractured system for veterans who don't know where to turn.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=270">Network of Care Web Site Aids in Returning Vets' Transitions</a> May 18, 2009</h2>
+                      <p>Web site for Maryland veterans and deployed service members improves access to mental health and support services.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=269">Nebraska Network of Care Provides Help for People with Mental Diseases</a> May 14, 2009</h2>
+                      <p>Network of Care advocate Paul Cumming is traveling the state this week to talk to folks about a new online resource that aids in mental health consumer&rsquo;s wellness and recovery.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=267">National Council Partners with Trilogy to Offer New Web and Social Media Resources</a> May 11, 2009</h2>
+                      <p>The National Council has partnered with Trilogy and the Network of Care to give members priority access to a comprehensive array of cutting-edge web technologies &mdash; the interactive Network of Care web portal for your community and consumers, customized social networking platforms, and website design and development.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=266">Behavioral Health Consumers, Families and Advocates Are Invited to Presentations About Nebraska&rsquo;s Network of Care</a> May 8, 2009</h2>
+                      <p>Network of Care's National Outreach and Training Manager Paul Cumming offers presentations on state's new behavioral health Web sites.&nbsp;</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=268">Maryland Launches Web Site For State's Veterans</a> May 7, 2009</h2>
+                      <p>Network of Care for Veterans and Service Members' Web site provides user-friendly navigation, up-to-date features and comprehensive information for Maryland veterans and their loved ones.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=265">State Launches New Network of Care for Mental Health Web Site</a> April 23, 2009</h2>
+                      <p>The Network of Care (<a href="http://www.hawaii.networkofcare.org/">www.Hawaii.networkofcare.org</a>) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available for the State of Hawai`i.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=279">Hawai&rsquo;i Department of Health Unveils Community-Based Web Site for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> April 23, 2009</h2>
+                      <p>Hawai&rsquo;i Network of Care (www.hawaii.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within the state of Hawai&rsquo;i</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=263">McHenry County, Ill., Unveils Community-Based Web Sites for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> April 7, 2009</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service provides by providing online access to comprehensive services available in McHenry County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=262">Maryland Launches Veterans Network of Care Portal</a> April 4, 2009</h2>
+                      <p>Maryland Veterans Network of Care portal provides simple and fast access to information on local, state and national behavioral health services available to veterans.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=261">Comprehensive Help Directory Rolls Out</a> April 3, 2009</h2>
+                      <p>Network of Care provides easy access to services, information for mental health, seniors, people with disabilities, and children, youth and families.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=259">Web Site to Help Maryland War Vets Get Care</a> April 1, 2009</h2>
+                      <p>Unique Web site devoted to the states' veterans is a model Maryland officials say they want the rest of the country to adopt.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=260">Web Site Helps Connect Maryland Veterans to Behavioral Services</a> April 1, 2009</h2>
+                      <p>Maryland launches one-stop Web site that connects veterans with behavioral health services statewide.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=256">Boulder County, Colo., and Partners Launch Comprehensive Network of Care Web Site</a> March 31, 2009</h2>
+                      <p>BoulderCountyHelp.org will provide easy access to a broad array of social services and information within the county.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=257">Maryland&rsquo;s Lt. Governor Joins in Launching Network of Care Web Sites for Veterans</a> March 31, 2009</h2>
+                      <p>Maryland is first state in the nation to launch online program to connect veterans with behavioral health services.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=258">Network of Care Web Site Can Help Those in Need in Nebraska</a> March 30, 2009</h2>
+                      <p>Network of Care site provides unprecedented access to information and resources for those dealing with mental illness and substance abuse issues in Nebraska.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=254">Governor of Nebraska Praises Network of Care</a> Mar 30, 2009</h2>
+                      <p>Governor Dave Heineman recently praised the Network of Care in a letter to fellow Nebraskans.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=252">GAH Partner Network of Care Launches Site for Veterans</a> March 27, 2009</h2>
+                      <p>Give an Hour and Network of Care will be working to provide helpful information to veterans and their loved ones, making GAH better known and accessible throughout the nation.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=251">State of Maryland Prepares for March 31 Launch of Network of Care for Veterans &amp; Service Members</a> March 25, 2009</h2>
+                      <p>Maryland gets set to roll out community-based Web portal to aid returning veterans, service members and their families.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=247">Nebraska Unveils Community-Based Web Sites for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> March 18, 2009</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service provides by providing online access to comprehensive services available in Nebraska.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=248">Nebraska Health and Human Services Launches New Web Site for Behavioral Health</a> March 18, 2009</h2>
+                      <p>Web site unique to Nebraska covers mental health and substance abuse issues, as well as gambling and traumatic brain injury concerns.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=246">Building a Network of Care</a> March 6, 2009</h2>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=244">Why New York City Needed A Comprehensive Web Site for Mental Illness</a> March 5, 2009</h2>
+                      <p>Former NAMI-NYC Metro president says new Network of Care Web site is &ldquo;a virtual encyclopedia of mental health information custom made for New Yorkers.&rdquo;</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=241">NAMI-NYC Metro Unveils Community-Based Web Site for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> February 19, 2009</h2>
+                      <p>New York City Network of Care (<a href="http://outlook.trilogyir.com/exchweb/bin/redir.asp?URL=http://www.nycnetworkofcare.org/">www.NYCNetworkofCare.org</a>) empowers people with mental illness and substance abuse issues, their families and service providers by providing online access to comprehensive services available within New York City.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=243">NAMI-NYC Metro Gives New Yorkers the Most Comprehensive Mental Health Web Site in Effort to Help Transform Care</a> February 19, 2009</h2>
+                      <p>This community&rsquo;s Network of Care for Public Health, developed in partnership with the Mariposa County Department of Human Services, is a pilot program for California and the nation.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=235">Central Valley Regional Center Unveils Community-Based Web Site for People with Developmental Disabilities, Their Families and Service Providers</a> January 30, 2009</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with developmental disabilities, their families and service providers by providing online access to comprehensive services available within the Central Valley.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=236">Mountain Crisis Services of Mariposa County Unveils Community-Based Web Site for People Experiencing Domestic Violence, Their Families, Friends and Service Providers</a> January 30, 2009</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people experiencing domestic violence, their families and friends, and the agencies and programs that serve them, by providing online access to comprehensive services available within Mariposa County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=237">Mariposa County Department of Human Services Unveils Community-Based Web Site for Children, Their Families and Service Providers</a> January 30, 2009</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers children, their families and service providers by providing online access to comprehensive services available within Mariposa County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=239">Mariposa County Launches Community-Based Web Site for Probation Services</a> January 30, 2009</h2>
+                      <p>The Network of Care (www.networkofcare.org) empowers the community by providing online access to comprehensive probation services available within Merced County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=231">Network of Care an MHSA Information Sharing Success</a> December 24, 2008</h2>
+                      <p>Former California Assembly member Bruce Bronzan lauds Network of Care before Mental Health Services Oversight and Accountability Commission.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=232">Pennsylvania Unveils Community-Based Web Sites for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> November 25, 2008</h2>
+                      <p>Pennsylvania Network of Care (www.pennsylvania.networkofcare.org) empowers people with mental illness and substance abuse issues, their families and service providers by providing online access to comprehensive services available within all of Pennsylvania&rsquo;s counties.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=229">Northern Virginia Network of Care Debuts in Fairfax</a> October 23, 2008</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within Fairfax County, the City of Fairfax, and the City of Falls Church; Arlington County; the City of Alexandria; Arlington County; Loudoun County and Prince William County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=230">Hanover Township, Ill., Unveils Community-Based Web Site for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> October 15, 2008</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within Havover Township.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=275">Maryland Network of Care: What Is It and How Can I Learn How to Use It? </a> September 22, 2008</h2>
+                      <p>On Our Own Wellness and Recovery Center in Baltimore, MD, can help users navigate their way around the Network of Care's Maryland Behavioral Health community-based Web sites.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=228">A Slow Journey Toward PHRs</a> August 20, 2008</h2>
+                      <p>Network of Care's "My Folder" feature proves to be a valuable personal health records (PHRs) tool for behavioral health consumers.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=227">Summit County, Colo., Unveils Community-Based Web Site for Children, Their Families and Service Providers</a> August 19, 2008</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers children, their families and service providers by providing online access to comprehensive services available within Summit County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=225">Northern Arizona Regional Behavioral Health Authority (NARBHA) Unveils Community-Based Web Site for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> July 1, 2008</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within Coconino, Navajo, Yavapai, Apache and Mohave counties.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=224">Pitkin County, Colo., Unveils Community-Based Health and Human Services Web Sites for Seniors and People With Disabilities, and Children and Family Services</a> June 4, 2008</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers seniors and people with disabilities and youth and families and those who serve them with online access to comprehensive services available within Pitkin County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=223">Maryland Unveils Network of Care for Behavioral Health Sites Statewide</a> May 30, 2008</h2>
+                      <p>Twelve Network of Care for Behavioral Health sites launched during annual conference of On Our Own of Maryland at Rocky Gap Lodge and Golf Resort.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=222">Network of Care for Behavioral Health Short-Listed for Major International Award</a> May 19, 2008</h2>
+                      <p>Network of Care named a finalist for prestigious Stockholm Challenge Trophy&nbsp;honoring information and communication technologies</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=221">Mule Town Family Network Unveils Community-Based Web Site for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> May 8, 2008</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within Maury County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=220">Butler County Unveils Community-Based Web Site for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> May 6, 2008</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within Butler County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=218">Eagle County, Colo., Health &amp; Human Services Unveils Community-Based Web Site for Seniors, People with Disabilities, Caregivers and Service Providers</a> April 29, 2008</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers seniors and people with disabilities and makes in-home care easier with online access to comprehensive services available in Eagle County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=219">Eagle County, Colo., Health &amp; Human Services Launches Community-Based Web Site for Children, Their Families and Service Providers</a> April 29, 2008</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers children, their families and service providers by providing online access to comprehensive services available within Eagle County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=217">Web Site Offers Senior Wider Access to Services in OK</a> April 19, 2008</h2>
+                      <p>Network of Care Web site helps seniors and their caregivers find services in Oklahoma, Cleveland, Canadian and Logan counties.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=216">Areawide Aging Agency Unveils Community-Based Web Site for Seniors, People with Disabilities, Caregivers and Service Providers</a> April 17, 2008</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers seniors and people with disabilities and makes in-home care easier with online access to comprehensive services available in Oklahoma, Canadian, Cleveland and Logan counties.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=226">Alamo Service Connection and Alamo AAA Unveil Community-Based Web Sites for Seniors and People with Disabilities in 12 Texas Counties</a> February 28, 2008</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers seniors and people with disabilities and makes in-home care easier with online access to comprehensive services available in Atascosa, Bexar, Bandera, Comal, Frio, Gillespie, Guadalupe, Karnes, Kendall,&nbsp;Kerr, Medina and Wilson counties.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=214">Merced County Launches Community-Based Web Sites for Public Health, Environmental Health, Emergency Medical Services, and Community Health</a> January 31, 2008</h2>
+                      <p>This community&rsquo;s Network of Care for Public Health, developed in partnership with the Merced County Health Department, is a pilot program for California and the nation.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=215">Merced County Launches Community-Based Web Site for Probation Services</a> January 31, 2008</h2>
+                      <p>The Network of Care (www.networkofcare.org) empowers the community by providing online access to comprehensive probation services available within Merced County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=213">Marin County Unveils Community-Based Web Site for Seniors, People with Disabilities, Caregivers and Service Providers</a> January 17, 2008</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers seniors and people with disabilities and makes in-home care easier with online access to comprehensive services available within Marin County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=212">Marin County Unveils Community-Based Web Site for Older Adults, People with Disabilities</a> January 9, 2008</h2>
+                      <p>Marin County will introduce a breakthrough Web site that provides comprehensive long-term care services, information and education significant to thousands of older adults and persons with disabilities who live in the county.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=211">Clark County, Wash., Launches Network of Care for Behavioral Health &amp; Community Services Web Site</a> October 11, 2007</h2>
+                      <p>New Network of Care Behavioral Health &amp; Community Services Web site provides online access to comprehensive services available within Clark County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=210">Connecticut Launches Network of Care for Behavioral Health</a> October 10, 2007</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within the state of Connecticut.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=209">Web Site Consolidates Independent Living Resources</a> October 5, 2007</h2>
+                      <p>New Web site provides information for the elderly, people with disabilities and the caregivers and agencies that help them in Alaska.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=208">Web Site Details Social Services for People with Disabilities, Seniors</a> October 4, 2007</h2>
+                      <p>Network of Care empowers seniors and people with disabilities and makes in-home care easier with online access to comprehensive services available within the state of Alaska.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=207">Alaska State Independent Living Council Unveils Community-Based Web Site for People with Disabilities, Seniors, Caregivers and Service Providers</a> October 3, 2007</h2>
+                      <p>Alaska Statewide Independent Living Council (SILC) introduces the Network of Care, a multilingual, community-based Web site providing comprehensive long-term care services, information and education significant to the thousands of seniors and persons with disabilities who live in their community.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=206">Registry Aims to Speed Aid to Elderly, Disabled</a> September 25, 2007</h2>
+                      <p>Voluntary listing would let emergency workers know where people in need live to speed evacuations during fires, earthquakes and other disasters.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=204">Portland, Multnomah County Launch Registry to Help Most Vulnerable Prepare for Emergencies</a> September 24, 2007</h2>
+                      <p>Voluntary Emergency Registry links elderly and people with disabilities to the 911 system, public health authority and human services agencies to receive emergency preparedness information so they can develop their own disaster plans.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=205">City of Portland and Multnomah County Launch Voluntary Emergency Registry</a> September 21, 2007</h2>
+                      <p>Voluntary Emergency Registry allows people to be checked by emergency first responders and emergency personnel during a crisis, aid in 911 responses, and provide a way for vulnerable residents to receive emergency preparedness information so they can develop their own disaster plans.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=203">Opinion - Cheers &amp; Jeers</a> July 27, 2007</h2>
+                      <p>Western Reserve Area Agency on Aging elicits huzzahs for the Network of Care&rsquo;s new Web site that offers resources for Cleveland-area seniors and people with disabilities.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=201">First Five Marin Unveils Community-Based Web Site for Children, Their Families and Service Providers</a> July 25, 2007</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers children, their families and service providers by providing online access to comprehensive services available within Marin County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=200">Web Site Serving Seniors, Disabled in Greater Cleveland Area Offers List of Services, &ldquo;Age Matters&rdquo; Message Board</a> July 24, 2007</h2>
+                      <p>Western Reserve Area Agency on Aging launches comprehensive Web site for seniors and persons with disabilities.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=199">Western Reserve Area Agency on Aging Unveils Community-Based Web Site for Seniors, People with Disabilities, Caregivers and Service Providers</a> July 17, 2007</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers seniors and people with disabilities and makes in-home care easier with online access to comprehensive services available within Cuyahoga, Geauga, Lake, Lorain and Medina counties.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=198">Making Mental Health Resources More Accessible In Rhode Island</a> July 2, 2007</h2>
+                      <p>New Web site offers individuals, families, caregivers and health care professionals a place to find resources to learn about mental health issues, get help, and even become advocates.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=197">New Web Site for Rhode Island Addresses Mental Health Disorders</a> June 29, 2007</h2>
+                      <p>Rhode Island Network of Care for Behavioral Health Web site (<a href="http://www.rhodeisland.networkofcare.org/">www.rhodeisland.networkofcare.org</a>) offers a one-stop online resource for those seeking guidance for mental health and behavioral issues.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=196">Network of Care Provides Access to All Things Behavioral Health for Rhode Islanders</a> June 25, 2007</h2>
+                      <p>Rhode Island Network of Care for Behavioral Health Web site helps residents statewide find support, assistance and resources when navigating the behavioral health system.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=193">Lanterman Regional Center Launches Network of Care Web Site Featuring Integrated Community Resources</a> June 11, 2007</h2>
+                      <p>Lanterman&rsquo;s Network of Care site&nbsp;provides community-based resources for children and adults affected by developmental disabilities.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=194">NAMI Partners with Trilogy Integrated Resources to Promote 'Network of Care'</a> June 11, 2007</h2>
+                      <p>NAMI's national convention in San Diego will include a symposium on the Network of Care as a model program.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=195">NAMI Applauds &ldquo;Network of Care,&rdquo; Encourages Statewide Partnerships</a> June 11, 2007</h2>
+                      <p>NAMI commends the Network of Care and promotes its adoption by state and local government agencies nationwide.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=189">Mental Health Web Site Active: Network of Care Offers National, State and Local Resources</a> May 25, 2007</h2>
+                      <p>Local officials learn to navigate Network of Care Web site that provides comprehensive information on mental health issues.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=185">Washington County Developing Community-Based Web Site for People with Behavioral Health Concerns</a> May 24, 2007</h2>
+                      <p>Network of Care (www.ohio.networkofcare.org) empowers people with mental illness, their families and service providers by providing online access to comprehensive services available in their community.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=186">Coastline Unveils Community-Based Web Site for Seniors, People with Disabilities, Caregivers, and Service Providers</a> May 24, 2007</h2>
+                      <p>Network of Care empowers seniors and people with disabilities and makes in-home care easier with online access to comprehensive services available within Coastline&rsquo;s Service Area.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=188">Web Site for Elderly Launches Today</a> May 24, 2007</h2>
+                      <p>Multilingual, community-based site that provides comprehensive long-term care services, information and education resources for seniors and persons with disabilities debuts in the Greater New Bedford area.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=184">A Virtual &ldquo;Network of Care&rdquo; for Behavioral Health Comes to the North Country</a> May 22, 2007</h2>
+                      <p>North Country Network of Care (www.northcountrynetworkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within Jefferson and St. Lawrence counties.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=182">Web Site Will Help Residents</a> May 18, 2007</h2>
+                      <p>Ohio Network of Care, a comprehensive, interactive database for information, communication and advocacy tools for those with mental health issues, to be unveiled on May 24 at Washington State Community College.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=183">Mental Health Services Creates Links to Resources</a> May 18, 2007</h2>
+                      <p>Lucas County Mental Health and Recovery Services Board launches the Network of Care Web site, providing area residents with access to information about mental health treatment services and support systems.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=191">State Consumer Participation and Leadership Committee Meets to Establish NAMI Consumer Membership Goals</a> May 17, 2007</h2>
+                      <p>Network of Care Web site an be used to influence political and advocacy issues relating to mental health.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=192">The Answer May Be A Few Keys Away</a> May 17, 2007</h2>
+                      <p>Networkofcare.org, mental health meets information management to create better behavioral health services.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=187">Mental Health And Recovery Services Board Of Lucas County Launches Community Based Web Site for People with Mental Health Issues</a> May 16, 2007</h2>
+                      <p>Network of Care (<a href="http://www.ohio.networkofcare.org/">www.ohio.networkofcare.org</a>) empowers people with mental illness, their families and service providers by providing online access to comprehensive services available in their community.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=181">Paint Valley ADAMH Board Develops Web Site for People with Behavioral Health Issues</a> May 8, 2007</h2>
+                      <p>Network of Care (<a href="http://www.ohio.networkofcare.org)/">www.Ohio.networkofcare.org)</a>&nbsp;empowers people with mental illness, their families and service providers by providing online access to comprehensive services available in Ross, Highland, Fayette, Pickaway and Pike counties.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=179">New Web Site Targets Medical Problems</a> April 30, 2007</h2>
+                      <p>New Network of Care Web site seeks to demystify the process of accessing public services, making it less confusing and intimidating.&nbsp;</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=190">New Web Site Allows Universal Access to Information for Merced County Residents</a> April 26, 2007</h2>
+                      <p>Human Services Agency teams with private company to provide better services through new Web site that allows universal access to information on children, families, seniors and those with disabilities.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=178">Lanterman Regional Center Unveils Community-Based Web Site for People with Developmental Disabilities, Their Families and Service Providers</a> April 20, 2007</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with developmental disabilities, their families and service providers by providing online access to comprehensive services available within Los Angeles County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=177">Network of Care Providing Online Access to Services in Muskingum Area</a> April 02, 2007</h2>
+                      <p>Muskingum-area residents now have access to an online resource that provide critical information for people challenged with mental illness and substance abuse.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=175">Older Ohioans Unveils New Web Resource</a> March 28, 2007</h2>
+                      <p>Older Ohioans Behavioral Health Network unveils Ohio Network of Care (<a href="http://www.ohio.networofcare.org/">www.ohio.networofcare.org</a>), a Web resource connecting individuals, families and&nbsp;agencies related to mental and emotional wellness.&nbsp;</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=173">Mental Health Recovery Services of Seneca, Sandusky and Wyandot Counties Launches New Web Site</a> March 27, 2007</h2>
+                      <p>Network of Care (<a href="http://www.ohio.networkofcare.org)/">www.Ohio.networkofcare.org)</a>&nbsp;empowers people with mental illness, their families and service providers by providing online access to comprehensive services available in Seneca, Sandusky and Wyandot counties.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=174">Network of Care Web Site Unveiled for Seneca, Sandusky and Wyandot Counties</a> March 27, 2007</h2>
+                      <p>Network of Care for Behavioral Health (<a href="http://www.ohio.networkofcare.org/">www.Ohio.networkofcare.org</a>) provides resources for individuals and families affected by mental illness in Seneca, Sandusky and Wyandot counties.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=176">Muskingum Area Mental Health and Recovery Services Board Unveils Network of Care for Ohio</a> March 23, 2007</h2>
+                      <p>Muskingum Area Mental Health and Recovery Services Board launches community-based Web site offering information about mental illness and substance abuse.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=172">Lake ADAMHS Hosts NE Ohio Launch of Innovative New Network of Care Initiative</a> March 21, 2007</h2>
+                      <p>Network of Care (www.Ohio.networkofcare.org) launches an innovative, comprehensive, easy-to-use Web site designed to be an important resource for people with mental illnesses, as well as their care givers and service providers, in northeast Ohio.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=171">Montgomery County Developing Community-Based Web Site for People with Behavioral Health Issues</a> March 20, 2007</h2>
+                      <p>Network of Care (www.Ohio.networkofcare.org) empowers people with mental illness, their families and service providers be providing online access to comprehensive services available in their community.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=170">Ohio Develops Community-Based Web Sites for Persons with Behavioral Health Issues</a> March 19, 2007</h2>
+                      <p>Network of Care (www.Ohio.networkofcare.org) launches statewide, county-specific Web sites in Ohio for those seeking critical information, communication and advocacy tools relating to behavioral health.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=169">Edgecombe, Halifax, Nash, Northampton and Wilson Counties Unveil Community-Based Web Sites for Seniors, People with Disabilities, Caregivers and Service Providers</a> February 28, 2007</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers seniors and people with disabilities and makes in-home care easier with online access to comprehensive services available within the Twin Counties, and Wilson, Halifax and Northampton counties.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=168">Web Site to Target Health Care Needs</a> February 20, 2007</h2>
+                      <p>Online information and communication database for seniors, physicians and caregivers to launch in the Twin Counties, and in Wilson, Halifax and Northampton counties.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=167">Tri-County MHMR Services Launches Network of Care for Behavioral Health in Liberty, Montgomery and Walker Counties, Texas</a> January 26, 2007</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within the Tri-County area.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=165">North Country Behavioral Healthcare Network Unveils Community-Based Web Sites for Essex and Franklin Counties in New York for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> January 19, 2007</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within Essex and Franklin counties.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=166">Network of Care Web Site Offers Local Residents a New Resource for Health</a> January 19, 2007</h2>
+                      <p>Residents of Essex and Franklin counties now have a new Internet resource for information about mental health, substance abuse and disability services.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=164">Web Site Helps Addicts Along with Families in Utah</a> December 4, 2006</h2>
+                      <p>Network of Care Web site directs people to substance abuse and mental health resources in their areas.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=163">Pierce County Unveils Community-Based Web Site for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> September 21, 2006</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within Pierce County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=162">Allegany and Steuben Counties Unveil Community-Based Web Site for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> September 20, 2006</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within Allegany and Steuben counties.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=161">Anne Arundel County Unveils Community-Based Web Site for Children, Their Families and Service Providers</a> September 19 2006</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers children, their families and service providers by providing online access to comprehensive services available within Anne Arundel County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=160">Utah Behavioral Healthcare Network Announces Statewide Launch of Community-Based Web Site for People with Mental Illness and Substance Abuse Issues, Their Families and Service Providers</a> September 19, 2006</h2>
+                      <p>Utah Network of Care (www.utah.networkofcare.org) empowers people with mental illness and substance abuse issues, their families and service providers by providing online access to comprehensive services available within all of Utah&rsquo;s counties.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=159">Golden Gate Regional Center Unveils Community-Based Web Site for People with Developmental Disabilities, Their Families and Service Providers</a> August 7, 2006</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with developmental disabilities, their families and service providers by providing online access to comprehensive services available in Marin, San Francisco and San Mateo counties.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=158">The Missing Links: Putting Placer in Touch with Health</a> August 7, 2006</h2>
+                      <p>A new network offers information on social services and even personalized medical care.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=157">Regional Center of the East Bay Unveils Community-Based Web Site for People with Developmental Disabilities, Their Families and Service Providers</a> August 3, 2006</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with developmental disabilities, their families and service providers by providing online access to comprehensive services available in Alameda and Contra Costa counties.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=155">New Web Site Offers Ventura County Residents Help for Mental Illness</a> August 2, 2006</h2>
+                      <p>Internet site allows county residents to find mental health resources quickly and easily.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=156">Ventura County Web Site Offers Mental Health Information, Resources</a> August 2, 2006</h2>
+                      <p>Ventura County Behavioral Health Department launchs Network of Care Web site to provide families, clients and counselors with information and resources on mental health issues.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=154">Ventura County Unveils Community-Based Web Site for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> August 1, 2006</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within Ventura County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=153">San Bernardino County Gives Patients New Online Center</a> June 23, 2006</h2>
+                      <p>Debut of San Bernardino County Web site specific to mental health could make the internet the main source of help.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=152">Missouri Mental Health Department Launches Community-Based Web Site for People with Disabilities</a> June 15, 2006</h2>
+                      <p>New Web site enables people and families with mental illness, developmental disabilities, or substance abuse issues to access comprehensive services online within each of Missouri&rsquo;s counties.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=151">Orange County Unveils Community-Based Web Site for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> June 7, 2006</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within Oranage County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=149">Calaveras County Residents Affected by Mental Illness Have Online Resource</a> May 31, 2006</h2>
+                      <p>New internet resource provides information about mental health disorders and care, along with resources about substance abuse and developmental disabilities for Calaveras County residents.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=148">Alameda County Unveils Community-Based Web Site for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> May 30, 2006</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within Alameda County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=146">Colusa County Unveils Community-Based Web Site for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> May 24, 2006</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within Colusa County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=147">New Web Site Offers Help on Mental Health Issues</a> May 24 2006</h2>
+                      <p>Kern County Mental Health Department launches free online source of help and information on mental illness, substance abuse and developmental disabilities to county residents, families and mental health and social service providers.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=145">Kern County Unveils Community-Based Web Site for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> May 24, 2006</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to Kern County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=143">Merced County Unveils Community-Based Web Site for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> May 23, 2006</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within Merced County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=144">San Benito County Unveils Community-Based Web Site for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> May 23, 2006</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within San Benito County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=150">Merced County Department of Mental Health Announces Launch of Community-Based Web Site for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> May 23, 2006</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within Merced County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=142">Web Site Details Health Resources</a> May 23, 2006</h2>
+                      <p>Mental, behavioral health the focus of online content, which provides links to legislation, articles and local organizations.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=141">County of Los Angeles Department of Mental Health Announces Launch of Community-Based Web Site Network of Care for Mental Health</a> May 22, 2006</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within Los Angeles County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=138">Napa County Unveils Community-Based Web Site for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> May 19, 2006</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within Napa County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=136">Tulare County Launches Network of Care Web Site for Mental Health Consumers and Providers</a> May 18, 2006</h2>
+                      <p>New Web site provides information, communications and advocacy for Tulare County residents seeking mental health services.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=137">Amador, Calaveras and Tuolumne Counties Jointly Launch Community-Based Web Site for People with Mental Illness, their Families and Service Providers</a> May 18, 2006</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within Amador, Calaveras and Tuolumne Counties.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=139">Mental Health Conference Boasts Important Speakers</a> May 17, 2006</h2>
+                      <p>Former Assemblyman Bruce Bronzan, president of Trilogy Integrated Resources, debuts Network for Care Web site that aims to provide online information, communications and advocacy for mental health consumers and providers.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=140">New Web Site Unveiled For Mental Health</a> May 17, 2006</h2>
+                      <p>New Web site aimed at servicing the mentally ill in the tri-counties area unveiled at press conference in San Andreas.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=135">Mental Health Site Well Received by Public and Professionals</a> May 16, 2006</h2>
+                      <p>Debut of new mental health Web site in San Francisco praised by those seeking services, professionals and advocates alike.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=134">New Mental Health Help Online</a> May 9, 2006</h2>
+                      <p>New Web site helps people with mental illnesses, substance use disorders, or families of children with emotional disturbances locate services and information in Marin County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=133">Santa Clara County Unveils Community-Based Web Site for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> May 8, 2006</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within Santa Clara County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=129">Orange County Unveils Web Site On Community-Based Health Care</a> Mar 6, 2006</h2>
+                      <p>Orange County Network of Care: A Road Map to Health Care (www.ochealthcare.org) empowers Orange County residents and service providers by providing online access to comprehensive services available within Orange County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=130">Web Site Focuses on Orange County Healthcare Services</a> March 6, 2006</h2>
+                      <p>Residents can find healthcare info at www.ochealthcare.org.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=127">The Center for Health Care Services of Bexar County Launches Texas&rsquo; First Community-Based Web Site for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> Feb 28, 2006</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within Bexar County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=128">Central Valley Regional Center Rolls Out Web Site Increasing Access to Community-Based Services for People with Developmental Disabilities, Their Families and Service Providers</a> Feb 28, 2006</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with developmental disabilities, their families and service providers by providing unique online access to comprehensive services available in the Central Valley area.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=125">Durham County Unveils Community-Based Web Site for Children, Their Families and Service Providers</a> Feb 15, 2006</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers children, their families and service providers by providing online access to comprehensive services available within Durham County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=126">Westside Regional Center Unveils First Community-Based Web Site for People with Developmental Disabilities, Their Families and Service Providers</a> Feb 6, 2006</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with developmental disabilities, their families and service providers by providing unique online access to comprehensive services available within Los Angeles County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=124">Five County Mental Health Authority Unveils Community-Based Web Site for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> Feb 3, 2006</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within the Five County area.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=123">St. Mary's County Unveils Community-Based Web Site for Chldren, Their Families and Service Providers</a> Jan 10, 2006</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers children, their families and service providers by providing online access to comprehensive services available within St. Mary's County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=122">Linked to Mental Wellness</a> Jan 5, 2006</h2>
+                      <p>Anne Arundel County joins national Web site that provides information on mental health care and insurance options.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=121">Anne Arundel County Unveils Community-Based Web Site for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> Dec 12, 2005</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within Anne Arundel County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=119">City of Los Angeles Department of Aging Unveils Community-Based Web Site</a> Dec 8, 2005</h2>
+                      <p>City of Los Angeles Department of Aging introduces a breakthrough solution for the elderly, people with disabilities, caregivers and service providers seeking long-term care and information services.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=120">New Web Resource for Seniors and Persons with Disabilities</a> Dec 8, 2005</h2>
+                      <p>Multi-lingual Web site allows users to store personal health information.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=117">Polk County Launches Breakthrough Web Site</a> Nov 16, 2005</h2>
+                      <p>Polk County offers one-stop Web site for resources on disability and mental health issues.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=118">Worcester County Unveils Community-Based Web Site for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> Nov 15, 2005</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within Worcester County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=116">New Web Site Increases Cuyahoga County Residents and Organizations' Access to Mental Health Services</a> Nov 4, 2005</h2>
+                      <p>Cuyahoga County Community Mental Health Board (CCCMHB) unveils new user-friendly Web site for county residents and organizations to locate information regarding mental health services.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=115">Web Site Has Data for Oregon Seniors, Disabled</a> Oct 27, 2005</h2>
+                      <p>Governor learned of issues while caring for his in-laws.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=114">Governor Launches Comprehensive Healthcare Web Site for Seniors and People with Disabilities</a> Oct 26, 2005</h2>
+                      <p>New Web site provides one-stop shop for long-term care and other health care information.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=113">Mid-Columbia Center for Living Unveils Community-Based Web Site for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> Oct 25, 2005</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within the Mid-Columbia area.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=112">Cuyahoga County, Ohio, Unveils Community-Based Web Site for People with Mental Illness, Mental Retardation or Substance Abuse Issues, Their Families and Service Providers</a> Oct 5, 2005</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within Cuyahoga County, Ohio</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=111">Lincoln County Behavioral Health Resources Available Online</a> Aug 26, 2005</h2>
+                      <p>Network of Care allows consumers and customers to better understand behavioral issues and have better access to related information within the county.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=109">New Website Addresses Behavioral Health Issues</a> Aug 24, 2005</h2>
+                      <p>Oregon's Lincoln County debuts an easy to use, easy to navigate, no-wrong-door Web portal for individuals, families, and agencies dealing with behavioral health, addictions and developmental disabilities issues.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=110">Women Have New Tool to Fight Domestic Violence</a> Aug 24, 2005</h2>
+                      <p>Lorain County Ohio unveils a first-of-its-kind Web page for domestic violence victims.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=107">Lincoln County Launches First Network of Care Site for Behavioral Health in Oregon: Lincoln County Unveils Community-Based Web Site For People With Behavioral Health, Addictions, Or Developmental Disability Issues, Their Families And Providers</a> Aug 17, 2005</h2>
+                      <p>Network of Care (http://lincoln.or.networkofcare.org/mh) empowers people with behavioral health, addictions or developmental disability issues, their families and service providers by providing online access to comprehensive services available within Lincoln County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=105">Genesis House Launches New Internet Site</a> Aug 9, 2005</h2>
+                      <p>Victims of domestic violence now have a new place to go for help, without leaving their homes.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=104">Network of Care for Domestic Violence Debuts In Lorain County, Ohio</a> Aug 5, 2005</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people experiencing domestic violence, their families and friends, and the agencies and programs that serve them, by providing online access to comprehensive services available within Lorain County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=103">Finding Services Can Be Just a Mouse Click Away</a> Jul 19, 2005</h2>
+                      <p>San Mateo County County officials have provided a new tool with information about comprehensive long-term care services and a wide range of educational resources for seniors and people with disabilities.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=102">Senior Citizen, Disabled Services Go High-Tech</a> July 7, 2005</h2>
+                      <p>Seniors and the disabled in San Mateo County will soon have a new Web site (http://sanmateo.networkofcare.org/aging) to help them find services ranging from health care and transportation to home repair work.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=101">City Web Site on Mental Health, Addiction Issues to Launch Today</a> June 16, 2005</h2>
+                      <p>The site, started through a $60,000 city-funded initiative, offers services for patients and providers.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=99">Philadelphia Unveils Community-Based Web Site For People With Mental Illness, Mental Retardation Or Substance Abuse Issues, Their Families And Service Providers</a> June 16, 2005</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within Philadelphia.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=98">Chemung County Unveils Community-Based Web Site For People With Mental Illness, Mental Retardation Or Substance Abuse Issues, Their Families And Service Providers</a> May 26, 2005</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, mental retardation or substance abuse issues, their families and service providers by providing online access to comprehensive services available within Chemung County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=100">San Francisco Unveils Community-Based Web Site For Seniors, People With Disabilities, Caregivers And Service Providers</a> May 17, 2005</h2>
+                      <p>Network of Support for Community Living (www.sfnscl.org) empowers seniors and people with disabilities and makes independent living easier with online access to comprehensive services available within San Francisco.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=97">Floyd, Giles, Montgomery and Pulaski Counties and the City of Radford <br />Unveil NOC Sites in Virginia</a> March 2, 2005</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with behavioral health disorders, their families and service providers by providing online access to comprehensive services available within the counties of Floyd, Giles, Montgomery, Pulaski and the City of Radford.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=96">Five Virginia Localities -- Henrico, Chesterfield, New Kent and Charles City Counties and City of Richmond -- Launch NOC for Behavioral Health</a> March 1, 2005</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with behavioral health disorders, their families and service providers by providing online access to comprehensive services available within the counties of Henrico, New Kent, Charles City, Chesterfield, and the City of Richmond.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=95">Virginia Governor, Secretary of Health Welcome Network of Care</a> Feb. 17, 2005</h2>
+                      <p>Virginia's Governor and Secretary of Health and Human Resources thank 10 Virginia communities for launching Network of Care for Behavioral Health.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=94">Network of Care for Mental Health Launched in Los Angeles County</a> Nov. 30, 2004</h2>
+                      <p>The National Mental Health Association of Greater Los Angeles today introduced a breakthrough Web solution for individuals, families and agencies concerned with mental health.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=91">Ashland County Mental Health Board Unveils New Web Site for Behavioral Health</a> Nov. 10, 2004</h2>
+                      <p>WOOSTER, Ohio &ndash; The Mental Health and Recovery Board of Ashland County today introduced a breakthrough Web solution for individuals, families and agencies concerned with behavioral health and emotional wellness.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=92">Network of Care for Behavioral Health Launches in Columbiana County, Ohio</a> Nov. 10, 2004</h2>
+                      <p>WOOSTER, Ohio &ndash; Network of Care empowers people with mental illness or substance abuse issues, their families and service providers by providing online access to comprehensive services available within Columbiana County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=93">Wayne and Holmes Counties Present New Site for Behavioral Health Services</a> Nov. 10, 2004</h2>
+                      <p>WOOSTER, Ohio &ndash; The Mental Health and Recovery Board of Wayne and Holmes Counties today introduced a breakthrough Web solution for individuals, families and agencies concerned with behavioral health and emotional wellness.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=89">Web Site Offers Seniors, Caregivers Help</a> Oct. 1, 2004</h2>
+                      <p>Senior citizens now have a one-stop resource where they can find information about age-related diseases and care without leaving their home.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=87">Riverside County Launches Community-Based Web Site for Seniors, People with Disabilities, Caregivers and Service Providers</a> Sept. 30, 2004</h2>
+                      <p>RIVERSIDE, Calif. &ndash; Riverside County today introduced a breakthrough solution for the elderly, people with disabilities, caregivers and service providers called Network of Care, a multilingual, community-based Web site that provides comprehensive long-term care services, information and education that is significant to the thousands of seniors and persons with disabilities who live in our county.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=88">NACBHD Announces Partnership to Promote Online MH Resource</a> Sept. 6, 2004</h2>
+                      <p>Recognizing the importance of expanding access to critical behavioral-health information, the National Association of County Behavioral Health Directors (NACBHD) last month announced a public/private partnership to promote an online mental health information source nationwide.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=90">Web Site Offers World of Information</a> Aug. 18, 2004</h2>
+                      <p>Nightingale Nursing Education Center in San Leandro is holding &ldquo;Prime-Time Wednesdays&rdquo; this month with different speakers every week.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=86">NACBHD and Trilogy Integrated Resources to Promote Nationwide Rollout <br />of Network of Care for Behavioral Health Web Sites</a> Aug. 04, 2004</h2>
+                      <p>WASHINGTON, D.C. &mdash; Working to dramatically expand access to critical behavioral-health information for individuals, families and service providers, the National Association of County Behavioral Health Directors (NACBHD) today announced a strategic alliance with Trilogy Integrated Resources LLC to promote Network of Care for Behavioral Health Web sites nationwide, as recommended in the President&rsquo;s New Freedom Commission on Mental Health.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=84">Network of Care puts services at Stark residents&rsquo; fingertips</a> July 06, 2004</h2>
+                      <p>The Stark County Community Mental Health Board, in partnership with the Stark County Family Council, has introduced an Internet-based community resource for information related to mental health, children and families.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=85">Website Touts Mental Health</a> July 06, 2004</h2>
+                      <p>The Stark County Community Mental Health Board, in partnership with the Stark County Family Council, recently introduced the Stark County Network of Care, http://stark.oh.networkofcare.org, an Internet-based resource for the up-to-date information related to mental health, children and families.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=83">Onondaga County&rsquo;s Network of Care</a> June 25, 2004</h2>
+                      <p>In April of this year, Onondaga County became the first county in the state to offer the award-winning Network of Care for Behavioral Health. County Executive Nicholas Pirro, at a press conference that included consumers, family members and providers, unveiled this innovative, user-friendly online behavioral health informational tool.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=82">New Mental Health Web Site to Launch Next Month</a> May 26, 2004</h2>
+                      <p>To place information into the hands of those who need it, the Stark County Mental Health Board, in partnership with the Stark County Family Council, announces the launch of its new Internet-based community resource, the Stark County Network of Care (http://stark.oh.networkofcare.org) on June 9.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=81">Stark County, Ohio, to launch NOCs for Mental Health and Children/Families on June 9</a> May 20, 2004</h2>
+                      <p>The Stark County Community Mental Health Board, in partnership with the Stark County Family Council, will introduce a breakthrough, Internet-based community resource on Wednesday, June 9th, 2004. The Stark County Network of Care (http://stark.oh.networkofcare.org) is an Internet-based resource for up-to-date information related to mental health, children and families.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=80">County Mental Health Information Goes Online</a> Apr 26, 2004</h2>
+                      <p>Onondaga County launched a Web site last week to help people find answers to questions about mental health and drug abuse.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=78">Pirro Unveils a Breakthrough Web Solution</a> April 22, 2004</h2>
+                      <p>Onondaga County Executive Nick Pirro unveiled the breakthrough Web solution today. It's called the Network of Care for Behavioral Health.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=79">Onondaga County to Unveil Breakthrough Web Solution</a> April 21, 2004</h2>
+                      <p>County Executive Nicholas J. Pirro will unveil a breakthrough web solution for recipients, families, and the general public concerned with mental health, developmental disabilities, and chemical dependence.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=69">Santa Clara County Launches Community-Based Web Site for Seniors, People with Disabilities, Caregivers and Service Providers</a> April 5, 2004</h2>
+                      <p>Santa Clara County today introduced a breakthrough solution for the elderly, people with disabilities, caregivers and service providers called Network of Care, a multilingual, community-based Web site that provides comprehensive long-term care services, information and education that is significant to the thousands of seniors and persons with disabilities who live in our county.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=56">Clermont County Unveils Community-Based Web Site for People with Mental Illness, Their Families and Service Providers</a> March 25, 2004</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, their families and service providers by providing online access to comprehensive services available within Clermont County</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=62">Web Site First Step in Mental Health Care</a> March 23, 2004</h2>
+                      <p>Lorain County is pioneering a free Web site heralded as a revolutionary way to help people navigate mental health care.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=72">Lorain County Unveils Community-based Web Site for People with Mental Illness, Their Families and Service Providers</a> March 23, 2004</h2>
+                      <p>Lorain County today introduced a breakthrough Web solution for individuals, families and agencies concerned with mental and emotional wellness. Network of Care for Mental Health is an online information place that provides critical information, communication and advocacy tools with a single point of entry. It ensures there is &ldquo;No Wrong Door&rdquo; for those navigating the system of mental health services, those working to avoid the need for formal services, and those ready to transition out of the mental health system.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=59">Healthwatch on KJWL Radio</a> February 2, 2004</h2>
+                      <p>Taking care of emotional health isn&rsquo;t always easy. But now, with the Network of Care at your fingertips, finding help is much easier. Log on to <a href="http://fresno.networkofcare.org">fresno.networkofcare.org</a>.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=71">San Mateo County Presents Community-Based Web Site for People with Mental Illness, Their Families and Service Providers</a> December 3, 2003</h2>
+                      <p>County today introduced a breakthrough Web solution for individuals, families and agencies concerned with mental and emotional wellness. Network of Care for Mental Health is an online information place that provides critical information, communication and advocacy tools with a single point of entry. It ensures there is &ldquo;No Wrong Door&rdquo; for those navigating the system of mental health services, those working to avoid the need for formal services, and those ready to transition out of the mental health system.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=60">New Web Site Helps Seniors, Providers with Care Issues</a> September 29, 2003</h2>
+                      <p>PASSAGES Adult Resource Center recently unveiled its Network of Care web site, which is intended to help the elderly, disabled, and service providers in Butte County with information on in-home care issues.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=65">Fresno County Presents Community-Based Web Site for Seniors, Their Families and Service Providers</a> September 19, 2003</h2>
+                      <p>Fresno County today introduced a breakthrough solution for the elderly, people with disabilities, caregivers and service providers called Network of Care, a multilingual, community-based Web site that provides comprehensive long-term care services, information and education that is significant to the thousands of seniors and persons with disabilities who live in our county.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=70">Fresno County Presents Community-Based Web Site for People with Mental Illness, Their Families and Service Providers</a> September 19, 2003</h2>
+                      <p>Fresno County today introduced a breakthrough Web solution for individuals, families and agencies concerned with mental and emotional wellness. Network of Care for Mental Health is an online information place that provides critical information, communication and advocacy tools with a single point of entry. It ensures there is &ldquo;No Wrong Door&rdquo; for those navigating the system of mental health services, those working to avoid the need for formal services, and those ready to transition out of the mental health system.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=74">Fresno County Presents Community-Based Web Site for Children, Their Families and Service Providers</a> September 19, 2003</h2>
+                      <p>Fresno County today introduced a breakthrough Web solution for individuals, families and agencies involved with children, especially kids ages 0-5. Network of Care for Kids is a &ldquo;No Wrong Door&rdquo; online information place that provides critical information, communication and advocacy tools with a single point of entry. This site can greatly assist families in finding the best services for their children, from insurance coverage to local services. It&rsquo;s a better way to connect the community that cares for our children.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=75">Placer County Introduces Community-Based Web Site for Children, Their Families and Service Providers</a> August 14, 2003</h2>
+                      <p>Placer County today introduced a breakthrough Web solution for individuals, families and agencies involved with children, especially kids ages 0-5. Network of Care for Kids is a &ldquo;No Wrong Door&rdquo; online information place that provides critical information, communication and advocacy tools with a single point of entry. This site can greatly assist families in finding the best services for their children, from insurance coverage to local services. It&rsquo;s a better way to connect the community that cares for our children.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=63">President&rsquo;s New Freedom Commission on Mental Health Showcases California&rsquo;s Network of Care</a> July 22, 2003</h2>
+                      <p>The President&rsquo;s New Freedom Commission on Mental Health has showcased California&rsquo;s Network of Care for Mental Health (http://www.networkofcare.org) as a model program in its ambitious, six-goal plan to fundamentally transform mental health care in America.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=77">Kings County Unveils Community-Based Web Site for Children, Their Families and Service Providers</a> July 9, 2003</h2>
+                      <p>Kings County today introduced a breakthrough Web solution for individuals, families and agencies involved with children, especially kids ages 0-5. Network of Care for Kids is a &ldquo;No Wrong Door&rdquo; online information place that provides critical information, communication and advocacy tools with a single point of entry. This site can greatly assist families in finding the best services for their children, from insurance coverage to local services. It&rsquo;s a better way to connect the community that cares for our children.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=64">Contra Costa County Presents Community-Based Web Site for Seniors, People with Disabilities, Caregivers and Service Providers</a> May 20, 2003</h2>
+                      <p>Contra Costa County today introduced a breakthrough solution for the elderly, people with disabilities, caregivers and service providers called Network of Care, a multilingual, community-based Web site that provides comprehensive long-term care services, information and education that is significant to the thousands of seniors and persons with disabilities who live in our county.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=3">First 5 Contra Costa Unveils Community-Based Web Site for Kids</a> May 19, 2003</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers children, their families and service providers by providing online access to comprehensive services available within Contra Costa County</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=4">San Diego County Unveils Community-based Web Site for Mental Health</a> April 30, 2003</h2>
+                      <p>Network of Care (www.networkofcare.org) empowers people with mental illness, their families and service providers by providing online access to comprehensive services available within San Diego County</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=44">Healthwise&reg; Knowledgebase Added to Trilogy&rsquo;s Community Health Web Sites</a> Feb. 13, 2003</h2>
+                      <p>Fourteen California counties will soon receive in-depth medical information from Healthwise within the Network of Care virtual health communities.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=51">American Society on Aging Presents 2003 Healthcare and Aging Award To Trilogy&rsquo;s Network of Care Web Sites</a> Feb. 13, 2003</h2>
+                      <p>SAN FRANCISCO &ndash; The American Society on Aging, in collaboration with the Pfizer Medical Humanities Initiative, has announced that the Network of Care for Seniors and People with Disabilities (www.networkofcare.org) was selected as one of six recipients of the 2003 Healthcare and Aging Award. Network of Care&rsquo;s creator, Trilogy Integrated Resources LLC, will be honored at the Joint Conference of the National Council on the Aging and the American Society on Aging on March 14, 2003, in Chicago.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=41">Network of Care Adds New Features</a> Dec. 1, 2002</h2>
+                      <p>You&rsquo;ll find many new features on your Network of Care Web site. Read on for some of the recent upgrades.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=37">Web Site Puts Senior Health Information Within a Mouse Click</a> Sept. 29, 2002</h2>
+                      <p>Seniors and disabled people in Butte County should be able to find useful information on a new Internet Web site sponsored by Passages, a Chico nonprofit organization.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=38">County Web Site a Resource for Disabled and Seniors</a> Sept. 28, 2002</h2>
+                      <p>Seniors and disabled people will be able to get medical information and learn about resources available to them on a new county Web site.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=67">San Diego County Launches Community-Based Web Site for Seniors, People with Disabilities, Caregivers and Service Providers</a> September 26, 2002</h2>
+                      <p>San Diego County today introduced a breakthrough solution for the elderly, people with disabilities, caregivers and service providers called Network of Care, a multilingual, community-based Web site that provides comprehensive long-term care services, information and education that is significant to the thousands of seniors and persons with disabilities who live in our county.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=68">Santa Barbara County Introduces Community-Based Web Site for Seniors, People with Disabilities, Caregivers and Service Providers</a> August 28, 2002</h2>
+                      <p>Santa Barbara County today introduced a breakthrough solution for the elderly, people with disabilities, caregivers and service providers called Network of Care, a multilingual, community-based Web site that provides comprehensive long-term care services, information and education that is significant to the thousands of seniors and persons with disabilities who live in our county.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=36">Web Site Aimed at Health Care for Seniors</a> Aug. 26, 2002</h2>
+                      <p>Santa Barbara health care leaders hope to connect with a demographic, snugly nestled among the smallest of the computer industry&rsquo;s niche markets.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=66">Kings County Unveils Community-based Web Site for Seniors, People with Disabilities, Caregivers and Service Providers</a> August 20, 2002</h2>
+                      <p>Kings County today introduced a breakthrough solution for the elderly, people with disabilities, caregivers and service providers called Network of Care, a multilingual, community-based Web site that provides comprehensive long-term care services, information and education that is significant to the thousands of seniors and persons with disabilities who live in our county.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=34">New Web Site Offers Wealth of Information</a> Aug. 18, 2002</h2>
+                      <p>A wealth of information can now be found online for the elderly, people with disabilities, caregivers and service providers at kings.networkofcare.org (Network of Care).</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=40">New Web Site Assists Senior Citizens, Disabled</a> August 16, 2002</h2>
+                      <p>The county health department is trying to spread the word about a Web site designed to help local seniors and the disabled access the services they need.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=33">New County Web Site Focuses on Seniors and the Disabled</a> Aug. 5, 2002</h2>
+                      <p>Finding the right information and resources just got a little easier for Santa Cruz County&rsquo;s seniors and persons with disabilities.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=31">Santa Cruz County Introduces New Web Site Serving Seniors, the Disabled, Service Providers and Caregivers</a> July 29, 2002</h2>
+                      <p>Santa Cruz County today introduced a breakthrough solution for the elderly, people with disabilities, caregivers and service providers called Network of Care, a multilingual, community-based Web site that provides comprehensive long-term care services, information and education that is significant to all the seniors and persons with disabilities who live in our county.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=32">Network of Care Web Site Offers Services for Seniors</a> July 28, 2002</h2>
+                      <p>The County Health Services Agency and Senior Network Services have teamed up to create a new informative Web site for seniors and health care workers.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=30">Monterey County Launches Site for Seniors, Disabled</a> July 18, 2002</h2>
+                      <p>Monterey County today introduced a breakthrough solution for the elderly, people with disabilities, caregivers and service providers called Network of Care, a multilingual, community-based Web site that provides comprehensive long-term care services, information and education that is significant to all the seniors and persons with disabilities who live in our county.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=28">Dynamite New Web Site for Seniors</a> Sept. 6, 2001</h2>
+                      <p>A new government Web site, designed exclusively for Alameda County&rsquo;s seniors and people with disabilities, places an incredible variety of services and tools in one place to help people stay independent.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=22">Web Sites Offer Seniors Help Online</a> Aug. 21, 2001</h2>
+                      <p>Using technology to help people born before the first computer, Alameda and Sacramento counties have shown off Web sites that link seniors to in-home care and community-based care programs with a click of the computer mouse.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=24">Revamp for Senior, Disabled Services</a> Aug. 21, 2001</h2>
+                      <p>The problems of finding services, for the elderly and disabled are getting attention in Alameda County.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=25">New Web Site for Seniors, Disabled</a> Aug. 21, 2001</h2>
+                      <p>Starting today, seniors, the disabled and caregivers in Alameda County can turn to the Internet to find information about health care services in an attempt to make in-home care easier.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=26">Caregiver Site Provides Resources</a> Aug. 21, 2001</h2>
+                      <p>Resource information tailored for Alameda County caregivers, seniors and the disabled is available through a new Web site being tested for the county.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=27">Web Site Provides Help to Elderly, Disabled</a> Aug. 21, 2001</h2>
+                      <p>Alameda County introduced a Web site Monday designed to help the elderly and people with disabilities find services and resources.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=23">Alameda County Unveils Web Site for the Elderly</a> Aug. 20, 2001</h2>
+                      <p>Alameda County today introduced a breakthrough solution for the elderly, people with disabilities, caregivers and service providers called Network of Care, a multilingual, community-based Web site that provides comprehensive long-term care services, information and education that is significant to the more than 300,000 seniors and persons with disabilities who live in our county.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=29">State, County Leaders Help Launch Network of Care</a> Aug. 20, 2001</h2>
+                      <p>State and county leaders joined hundreds of seniors and service providers in praising Network of Care during launch events introducing the multilingual, community-based Web site in Sacramento and Alameda counties.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=21">Site Links to Long-Term Care</a> Aug. 20, 2001</h2>
+                      <p>A new Internet site has made finding long-term services and information a little easier for elderly residents, disabled individuals and their caregivers in California.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=19">County Project Offers Hookup to Care Network</a> Aug. 13, 2001</h2>
+                      <p>Sacramento County is using the Internet to open up a world of assistance and advice to older or disabled people and their caregivers.</p>
+                      <h2><a href="http://www.trilogyir.com/press-release.aspx?id=20">Sacramento County Launches Senior Web Site</a> Aug. 13, 2001</h2>
+                      <p>Sacramento County today introduced a breakthrough solution for the elderly, their families, caregivers and service providers called Network of Care, a community-based Web site that provides comprehensive long-term care services, information and education that is significant to the more than 186,000 seniors who live here.</p>
+                         </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
               </div>
             </div>
-            <div class='tile is-vertical notification'>
-                <a class='button is-info' id='getArticles'>Get Articles</a>
-                <br>
-                <a class='button is-info' id='myArticles' href='/saved'>My Saved Articles</a>
-            </div>
-                        <div class='content' id='articles'>
-              <% for (let i = 0; i < allresults.length; i++) { %>
-                <p>Title:  <%= allresults[i].title %>'
-                  <br />
-                  URL: <a href="<%= allresults[i].url %>" target="_blank"> <%= allresults[i].url %></a>
-                <br>
-                  <a data-id="<%= allresults[i].id %>" class="button is-info" id="saveArticles">Save Article</a>
-                </p>
-
-                <% } %>
-
-            </div>
           </div>
-
-        </div>
+          <h2 class="text-center mt-5">Select a State to View All Associated NOC Sites</h2>
+          <div id="mapd" >
+         </div>
       </div>
-    </section>
+      <footer class="row mx-0">
+         <div class="col-sm-5 offset-sm-1 col-xs-12">
+            <a href="/Trilogy/index.aspx"><img src="https://networkofcare4elearning.networkofcare4elearning.org/Images/logos/noc-footer-white.png" style="margin: 14px 0 22px 0;"></a><br>
+            © <span id="ctl00_ctl00_lblCopyYear">2018</span>  <a href="http://www.trilogyir.com" target="_blank">Trilogy Integrated Resources</a><br>
+            All Rights Reserved.
+         </div>
+         <div class="col-sm-2 pt-2">
+            <ul class="footer-nav px-0 col-xs-12">
+               <li class="footer-nav-title">ABOUT</li>
+               <li><a href="/Trilogy/ContactTrilogy.aspx" data-toggle="modal" data-target="#contact">Contact Us</a></li>
+               <li><a href="history.aspx">Our History</a></li>
+               <li><a href="team.aspx">Our Team</a></li>
+               <li><a href="founders.aspx">Our Founders</a></li>
+            </ul>
+         </div>
+         <div class="col-sm-2 pt-2">
+            <ul class="footer-nav px-0 col-xs-12">
+               <li class="footer-nav-title">MYNOC</li>
+               <li><a href="http://mynetworkofcare.org/">Login</a></li>
+               <li><a href="http://mynetworkofcare.org/Account/ForgotPassword">Forgot Password</a></li>
+            </ul>
+         </div>
+      </footer>
+      <a href="javascript:" id="return-to-top"><i class="fas fa-chevron-up"></i></a>
+     <!-- Modal -->
+      <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Contact Us</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
 
-  </body>
-  <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-  <script>
-    // Empty the notes from the note section
-    $('#getArticles').on('click', function () {
-      location.reload();
-    });
+            <div class="modal-body">
+              <p>Please contact us to learn more about the work we are doing at Trilogy. In addition to Network of Care Web sites, we develop Network of Care Call Center applications that make it simple for social service agencies to manage and track their calls. Our Network of Care eLearning tool is a cost-effective way to deliver education and training to public-sector employees.</p>
+              <p>Trilogy Integrated Resources, Inc.<br />1101 Fifth Avenue, Suite 250<br />San Rafael, California 94901</p>
+              <p>Phone: 415.458.5900<br />Fax: 415.256.9036<br />Email: <a href="mailto:info@trilogyir.com">info@trilogyir.com</a></p>
+       
+            <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-    $(document).on('click', '#saveArticles', function () {
-      // Empty the notes from the note section
-      var id = $(this).data('id');
-
-      $(this).parent().fadeOut();
-      $(this).fadeOut();
-      console.log('/articles/' + id);
-      $.ajax({
-        method: 'POST',
-        url: '/articles/' + id
-      })
-        // With that done, add the note information to the page
-        .done(function (data) {
-
+   </body>
+   <script type="text/javascript">
+      $( document ).ready(function() {
+        var windowWidth = $( window ).width();
+        mobileClasses();
+        $( window ).resize(function() {
+          windowWidth = $( window ).width();
+            mobileClasses();
         });
-    });
-
-  </script>
+        function mobileClasses () {
+          var item = $('.carousel-item');
+          if(windowWidth <= 414) {
+            item.removeClass('vh55');
+            item.addClass('vh75');
+          } else {
+            item.removeClass('vh75');
+            item.addClass('vh55');
+          }
+        }
+        // ===== Scroll to Top ==== 
+      $(window).scroll(function() {
+          if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+              $('#return-to-top').fadeIn(200);    // Fade in the arrow
+          } else {
+              $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+          }
+      });
+      $('#return-to-top').click(function() {      // When arrow is clicked
+          $('body,html').animate({
+              scrollTop : 0                       // Scroll to top of body
+          }, 500);
+      });
+      });
+      
+      
+      $(window).bind("load", function() {
+         init()
+      });
+      
+      
+   </script>
 </html>
+
